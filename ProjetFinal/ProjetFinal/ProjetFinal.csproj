@@ -17,6 +17,9 @@
     <None Remove="PageAdmin.xaml" />
     <None Remove="PageStats.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Remove="App.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -44,6 +47,11 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageStats.xaml">
