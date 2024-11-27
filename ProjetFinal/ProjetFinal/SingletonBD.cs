@@ -27,7 +27,7 @@ namespace ProjetFinal
             return instance;
         }
 
-        //va avoir besoin de un pour administrateur parcourir la bd et regarder si est dedans 
+        //va avoir besoin de un pour administrateur parcourir la bd et regarder si est dedans test
 
         //Get activité reste a modifier avec casse et colonne
         public void getActivite()
