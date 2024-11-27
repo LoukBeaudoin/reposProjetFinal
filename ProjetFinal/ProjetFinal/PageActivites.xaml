@@ -10,6 +10,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Page Activite"/>
+        <TextBlock Text="Page Activiteas"/>
     </Grid>
 </Page>
