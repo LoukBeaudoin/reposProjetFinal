@@ -36,13 +36,13 @@ namespace ProjetFinal
 
             switch (item.Name)
             {
-                case "iAffichage":
+                case "pageActivite":
                     mainWindow.Navigate(typeof(PageActivites));
                     break;
-                case "iStats":
+                case "pageAdmin":
                     mainWindow.Navigate(typeof(PageAdmin));
                     break;
-                case "iRecherche":
+                case "pageStats":
                     mainWindow.Navigate(typeof(PageStats));
                     break;
                 default:
