@@ -26,11 +26,28 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+            //Singleton.GetInstance.SetMainWindow(this);
+            mainWindow.Navigate(typeof(PageActivites));
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            var item = (NavigationViewItem)args.SelectedItem;
+
+            switch (item.Name)
+            {
+                case "iAffichage":
+                    mainWindow.Navigate(typeof(PageActivites));
+                    break;
+                case "iStats":
+                    mainWindow.Navigate(typeof(PageAdmin));
+                    break;
+                case "iRecherche":
+                    mainWindow.Navigate(typeof(PageStats));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

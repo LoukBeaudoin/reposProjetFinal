@@ -9,7 +9,15 @@
     mc:Ignorable="d"
     Title="ProjetFinal">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid>
+        <NavigationView PaneDisplayMode="Left" PaneTitle="MON TITRE" x:Name="navView" SelectionChanged="navView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="Page Activités" x:Name="navHeader"/>
+                <NavigationViewItem Content="Page Activités" x:Name="pageActivite" Icon="Add"/>
+                <NavigationViewItem Content="Page Admin" x:Name="pageAdmin" Icon="List"/>
+                <NavigationViewItem Content="Page Stats" x:Name="pageStats" Icon="Page"/>
+            </NavigationView.MenuItems>
+            <Frame x:Name="mainWindow" Grid.Row="1" />
+        </NavigationView>
+    </Grid>
 </Window>
