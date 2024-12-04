@@ -10,8 +10,123 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Page Statsas"/>
         
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Page Statistique" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
+
+        <StackPanel x:Name="stk_nbTotalAdherent" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Nombre total d'adhérents : " Grid.Row="0" Grid.Column="0" FontSize = "15" Margin="20"/>
+                <TextBlock x:Name="nbTotalAdherent" Grid.Row="0" Grid.Column="1" FontSize = "15" Margin="20" Text="te"/>
+            </Grid>
+            
+        </StackPanel>
+
+        <StackPanel x:Name="stk_nbTotalActivite" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Nombre total d'activités : " Grid.Row="0" Grid.Column="0" FontSize = "15" Margin="20"/>
+                <TextBlock x:Name="nbTotalActivite" Grid.Row="0" Grid.Column="1" FontSize = "15" Margin="20" Text="tes1"/>
+            </Grid>
+
+        </StackPanel>
+
+        <StackPanel x:Name="stk_nbAdherentActivite" Grid.Row="2" Grid.Column="0" Margin="20">
+            <TextBlock  Text="Nombre adhérent par activité" FontSize = "15"/>
+        </StackPanel>
+        <StackPanel x:Name="stk_nbAdherentActiviteResultat" Grid.Row="2" Grid.Column="1" Margin="20">
+            <TextBlock  Text="test"/>
+        </StackPanel>
+
+        <StackPanel x:Name="stk_moyenneNoteActivite" Grid.Row="2" Grid.Column="2" Margin="20">
+            <TextBlock  Text="Note moyenne par activité"/>
+        </StackPanel>
+        <StackPanel x:Name="stk_moyenneNoteActiviteResultat" Grid.Row="2" Grid.Column="3" Margin="20">
+            <TextBlock  Text="test"/>
+        </StackPanel>
+
+        <!--<TextBlock Text="Moyenne des note : " Grid.Row="1" Grid.Column="2" FontSize = "20" Margin="20"/>
+        <TextBlock x:Name="moynneNote" Grid.Row="1" Grid.Column="2" FontSize = "20" Margin="20" Text="tes1"/>-->
+
+
+        <StackPanel x:Name="stk_adherentMaxSeance" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"> <!--call la fonction de ma BD-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Adhérent avec le plus de séance : " Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize = "15" Margin="20"/>
+                <TextBlock Text="SM-1985-109" Grid.Row="0" Grid.Column="1" FontSize = "15" Margin="20"/>
+            </Grid>
+
+        </StackPanel>
+
+        <StackPanel x:Name="stk_ageMoyenAdherent" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Age Moyen des adhérents : " Grid.Row="0" Grid.Column="0"  FontSize = "15" Margin="20"/>
+                <TextBlock x:Name="moyenneAge" Grid.Row="0" Grid.Column="2" FontSize = "15" Margin="20" Text="tes1"/>
+            </Grid>
+
+        </StackPanel>
+
+        <StackPanel x:Name="stk_adeherentplusVieu" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ID Adhérent : " Grid.Row="0" Grid.Column="0"  FontSize = "15" Margin="20"/>
+                <TextBlock x:Name="adherentVieux" Grid.Row="0" Grid.Column="1" FontSize = "15" Margin="20" Text="tes1"/>
+            </Grid>
+
+        </StackPanel>
+
     </Grid>
 </Page>

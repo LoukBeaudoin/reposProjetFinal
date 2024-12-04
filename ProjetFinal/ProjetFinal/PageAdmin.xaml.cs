@@ -27,5 +27,57 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
         }
+
+
+        private async void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+            MonDialogue dialog = new MonDialogue();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Authentification";
+            dialog.PrimaryButtonText = "Annuler";
+            dialog.CloseButtonText = "Se connecter";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+
+        }
+
+
+        private async void btn_ajout_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            DialogAjoutAdherent dialog = new DialogAjoutAdherent();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Nouveau adhérent";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_ajout_activite_Click(object sender, RoutedEventArgs e)
+        {
+            DialogAjoutActivite dialog = new DialogAjoutActivite();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Nouvelle activité";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_ajout_seance_Click(object sender, RoutedEventArgs e)
+        {
+            DialogAjoutSeance dialog = new DialogAjoutSeance();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Nouvelle séance";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
     }
 }

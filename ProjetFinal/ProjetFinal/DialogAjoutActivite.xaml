@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.DialogAjoutActivite"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel>
+
+        <StackPanel Margin="5">
+            <TextBox x:Name="tbx_nom" Header="Entrez le nom de l'activité" />
+            <TextBlock x:Name="erreur_nom" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <TextBox x:Name="tbx_coutOrganisation" Header="Entrez le cout de l'organisation"  />
+            <TextBlock x:Name="erreur_coutOrganisation" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <TextBox x:Name="tbx_prixDeVente" Header="Entrez le prix de vente" />
+            <TextBlock x:Name="erreur_prixDeVente" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <ComboBox Header="Id Admin">
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+                <x:String>3</x:String>
+                <x:String>4</x:String>
+                <x:String>5</x:String>
+                <x:String>6</x:String>
+                <x:String>7</x:String>
+                <x:String>8</x:String>
+                <x:String>9</x:String>
+                <x:String>10</x:String>
+            </ComboBox>
+            <TextBlock x:Name="erreur_idAdmin" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <ComboBox Header="Catégorie">
+                <x:String>Escalade</x:String>
+                <x:String>Raquette</x:String>
+                <x:String>Cirque</x:String>
+                <x:String>Tricot</x:String>
+                <x:String>Rock acrobatique</x:String>
+                <x:String>Parapente</x:String>
+                <x:String>Yoga</x:String>
+                <x:String>Danse</x:String>
+                <x:String>Parkour</x:String>
+                <x:String>Randonnée</x:String>
+            </ComboBox>
+            <TextBlock x:Name="erreur_idCategorie" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+    </StackPanel>
+</ContentDialog>

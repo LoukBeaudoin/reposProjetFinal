@@ -10,6 +10,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Page Activiteas"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Page Activité" Margin="20" FontSize="25"/>
+        <ListView x:Name="lv_liste" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" Margin="20" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate ><!--datatype-->
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Text="{Binding  nom }" FontSize="20" />
+                        <TextBlock Text=" - " FontSize="20" />
+                        <TextBlock Text="{Binding  note}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

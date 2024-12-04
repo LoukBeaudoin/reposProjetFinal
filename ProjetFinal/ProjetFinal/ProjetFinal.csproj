@@ -13,6 +13,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="DialogAjoutActivite.xaml" />
+    <None Remove="DialogAjoutAdherent.xaml" />
+    <None Remove="DialogAjoutSeance.xaml" />
+    <None Remove="MonDialogue.xaml" />
     <None Remove="PageActivites.xaml" />
     <None Remove="PageAdmin.xaml" />
     <None Remove="PageStats.xaml" />
@@ -52,6 +56,18 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Update="DialogAjoutSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogAjoutActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogAjoutAdherent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="MonDialogue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageStats.xaml">

@@ -10,6 +10,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Page Admin test"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Text="Page Admin" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
+        <Button x:Name="btn_test" Content="Test" Click="btn_test_Click" Grid.Row="3" Grid.Column="3"/>
+
+        <Button x:Name="btn_ajout_adherent" Content="Ajouter Adhérent" Click="btn_ajout_adherent_Click" Grid.Row="1" Grid.Column="0"/>
+        <Button x:Name="btn_ajout_activite" Content="Ajouter Activité" Click="btn_ajout_activite_Click" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btn_ajout_seance" Content="Ajouter Séance" Click="btn_ajout_seance_Click" Grid.Row="1" Grid.Column="2"/>
     </Grid>
 </Page>
