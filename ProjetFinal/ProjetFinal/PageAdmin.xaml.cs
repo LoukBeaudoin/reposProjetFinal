@@ -79,5 +79,76 @@ namespace ProjetFinal
 
             ContentDialogResult resultat = await dialog.ShowAsync();
         }
+
+        private async void btn_modifier_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            DialogModifierAdherent dialog = new DialogModifierAdherent();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Modifier Adhérent";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_modifier_activite_Click(object sender, RoutedEventArgs e)
+        {
+            DialogModifierActivite dialog = new DialogModifierActivite();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Modifier Activité";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+        private async void btn_modifier_seance_Click(object sender, RoutedEventArgs e)
+        {
+            DialogModifierSeance dialog = new DialogModifierSeance();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Modifier Séance";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_supprimer_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            DialogSupprimerAdherent dialog = new DialogSupprimerAdherent();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Supprimer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Supprimer Adhérent";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_supprimer_activite_Click(object sender, RoutedEventArgs e)
+        {
+            DialogSupprimerActivite dialog = new DialogSupprimerActivite();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Supprimer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Supprimer Activité";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_supprimer_seance_Click(object sender, RoutedEventArgs e)
+        {
+            DialogSupprimerSeance dialog = new DialogSupprimerSeance();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Supprimer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.Title = "Supprimer Séance";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
     }
 }
