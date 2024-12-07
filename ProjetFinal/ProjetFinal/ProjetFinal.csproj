@@ -16,6 +16,12 @@
     <None Remove="DialogAjoutActivite.xaml" />
     <None Remove="DialogAjoutAdherent.xaml" />
     <None Remove="DialogAjoutSeance.xaml" />
+    <None Remove="DialogModifierActivite.xaml" />
+    <None Remove="DialogModifierAdherent.xaml" />
+    <None Remove="DialogModifierSeance.xaml" />
+    <None Remove="DialogSupprimerActivite.xaml" />
+    <None Remove="DialogSupprimerAdherent.xaml" />
+    <None Remove="DialogSupprimerSeance.xaml" />
     <None Remove="MonDialogue.xaml" />
     <None Remove="PageActivites.xaml" />
     <None Remove="PageAdmin.xaml" />
@@ -56,6 +62,24 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Update="DialogSupprimerSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogSupprimerActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogSupprimerAdherent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogModifierSeance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogModifierActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="DialogModifierAdherent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="DialogAjoutSeance.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

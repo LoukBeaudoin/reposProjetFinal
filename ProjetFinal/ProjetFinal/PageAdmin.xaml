@@ -29,8 +29,16 @@
         <TextBlock Text="Page Admin" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
         <Button x:Name="btn_test" Content="Test" Click="btn_test_Click" Grid.Row="3" Grid.Column="3"/>
 
-        <Button x:Name="btn_ajout_adherent" Content="Ajouter Adhérent" Click="btn_ajout_adherent_Click" Grid.Row="1" Grid.Column="0"/>
-        <Button x:Name="btn_ajout_activite" Content="Ajouter Activité" Click="btn_ajout_activite_Click" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="btn_ajout_seance" Content="Ajouter Séance" Click="btn_ajout_seance_Click" Grid.Row="1" Grid.Column="2"/>
+        <Button x:Name="btn_ajout_adherent" Content="Ajouter Adhérent" Click="btn_ajout_adherent_Click" Grid.Row="1" Grid.Column="0" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btn_ajout_activite" Content="Ajouter Activité" Click="btn_ajout_activite_Click" Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btn_ajout_seance" Content="Ajouter Séance" Click="btn_ajout_seance_Click" Grid.Row="1" Grid.Column="2" Margin="0,0,0,20" Background="LightGreen"/>
+
+        <Button x:Name="btn_modifier_adherent" Content="Modifier Adhérent" Click="btn_modifier_adherent_Click" Grid.Row="2" Grid.Column="0" Margin="0,0,0,20" Background="LightCyan"/>
+        <Button x:Name="btn_modifier_activite" Content="Modifier Activité" Click="btn_modifier_activite_Click" Grid.Row="2" Grid.Column="1" Margin="0,0,0,20" Background="LightCyan"/>
+        <Button x:Name="btn_modifier_seance" Content="Modifier Séance" Click="btn_modifier_seance_Click" Grid.Row="2" Grid.Column="2" Margin="0,0,0,20" Background="LightCyan"/>
+
+        <Button x:Name="btn_supprimer_adherent" Content="Supprimer Adhérent" Click="btn_supprimer_adherent_Click" Grid.Row="3" Grid.Column="0" Background="PaleVioletRed"/>
+        <Button x:Name="btn_supprimer_activite" Content="Supprimer Activité" Click="btn_supprimer_activite_Click" Grid.Row="3" Grid.Column="1" Background="PaleVioletRed"/>
+        <Button x:Name="btn_supprimer_seance" Content="Supprimer Séance" Click="btn_supprimer_seance_Click" Grid.Row="3" Grid.Column="2" Background="PaleVioletRed"/>
     </Grid>
 </Page>

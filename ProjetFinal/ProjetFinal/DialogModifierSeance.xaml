@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.DialogModifierSeance"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel>
+
+        <StackPanel Margin="5">
+            <TextBox x:Name="tbx_dateOrganisation" Header="Entrez la date de la séance" />
+            <TextBlock x:Name="erreur_dateOrganisation" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <TextBox x:Name="tbx_nbPlaceDispo" Header="Entrez le nombre de place disponible"  />
+            <TextBlock x:Name="erreur_nbPlaceDispo" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <ComboBox Header="Id Admin">
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+                <x:String>3</x:String>
+                <x:String>4</x:String>
+                <x:String>5</x:String>
+                <x:String>6</x:String>
+                <x:String>7</x:String>
+                <x:String>8</x:String>
+                <x:String>9</x:String>
+                <x:String>10</x:String>
+            </ComboBox>
+            <TextBlock x:Name="erreur_idAdmin" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+        <StackPanel Margin="5">
+            <ComboBox Header="Id activité">
+                <!--verifier pour le nom-->
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+                <x:String>3</x:String>
+                <x:String>4</x:String>
+                <x:String>5</x:String>
+                <x:String>6</x:String>
+                <x:String>7</x:String>
+                <x:String>8</x:String>
+                <x:String>9</x:String>
+                <x:String>10</x:String>
+            </ComboBox>
+            <TextBlock x:Name="erreur_idActivite" FontSize="15" Foreground="red" />
+        </StackPanel>
+
+    </StackPanel>
+</ContentDialog>
