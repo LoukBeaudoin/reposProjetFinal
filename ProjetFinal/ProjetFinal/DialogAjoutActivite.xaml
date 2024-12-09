@@ -15,17 +15,17 @@
     <StackPanel>
 
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_nom" Header="Entrez le nom de l'activité" />
+            <TextBox x:Name="tbx_nom" Text="{x:Bind Nom, Mode=TwoWay}" Header="Entrez le nom de l'activité" />
             <TextBlock x:Name="erreur_nom" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_coutOrganisation" Header="Entrez le cout de l'organisation"  />
+            <TextBox x:Name="tbx_coutOrganisation" Text="{x:Bind PrixOrg, Mode=TwoWay}" Header="Entrez le cout de l'organisation"  />
             <TextBlock x:Name="erreur_coutOrganisation" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_prixDeVente" Header="Entrez le prix de vente" />
+            <TextBox x:Name="tbx_prixDeVente" Text="{x:Bind PrixVente, Mode=TwoWay}" Header="Entrez le prix de vente" />
             <TextBlock x:Name="erreur_prixDeVente" FontSize="15" Foreground="red" />
         </StackPanel>
 
@@ -46,7 +46,7 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Catégorie" x:Name="cbbx_categorie">
+            <ComboBox Header="Catégorie" Text="{x:Bind Type, Mode=TwoWay}" x:Name="cbbx_categorie">
                 <x:String>Escalade</x:String>
                 <x:String>Raquette</x:String>
                 <x:String>Cirque</x:String>

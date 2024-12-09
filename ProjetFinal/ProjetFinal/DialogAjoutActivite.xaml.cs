@@ -20,10 +20,12 @@ namespace ProjetFinal
 {
     public sealed partial class DialogAjoutActivite : ContentDialog
     {
-        string inputNom;
-        string inputType;
-        string inputPrixOrg;
-        string inputPrixVente;
+        public string inputNom;
+        public string inputType;
+        public string inputPrixOrg;
+        public string inputPrixVente;
+        public double parsedPrixOrg;
+        public double parsedPrixVente;
         public DialogAjoutActivite()
         {
             this.InitializeComponent();
@@ -55,7 +57,7 @@ namespace ProjetFinal
             {
                 erreur_idCategorie.Visibility = Visibility.Collapsed;
             }
-            if (string.IsNullOrEmpty(inputPrixOrg) || double.Parse(inputPrixOrg) <0)
+            if (!double.TryParse(inputPrixOrg, out parsedPrixOrg))
             {
                 erreur_coutOrganisation.Visibility = Visibility.Visible;
                 erreur_coutOrganisation.Text = "Veuillez entrer un prix valide.";
@@ -65,7 +67,7 @@ namespace ProjetFinal
             {
                 erreur_coutOrganisation.Visibility = Visibility.Collapsed;
             }
-            if (string.IsNullOrEmpty(inputPrixVente) || double.Parse(inputPrixVente) < 0)
+            if (!double.TryParse(inputPrixVente, out parsedPrixVente))
             {
                 erreur_prixDeVente.Visibility = Visibility.Visible;
                 erreur_prixDeVente.Text = "Veuillez entrer un prix de vente valide.";
@@ -76,9 +78,25 @@ namespace ProjetFinal
                 erreur_prixDeVente.Visibility = Visibility.Collapsed;
             }
         }
-        public string Nom => inputNom;
-        public string Type => inputType;
-        public string PrixOrg => inputPrixOrg;
-        public string PrixVente => inputPrixVente;
+        public string Nom
+        {
+            get => inputNom;
+            set => inputNom = value;
+        }
+        public string Type
+        {
+            get => inputType;
+            set => inputType = value;
+        }
+        public double PrixOrg
+        {
+            get => parsedPrixOrg;
+            set => parsedPrixOrg = value;
+        }
+        public double PrixVente
+        {
+            get => parsedPrixVente;
+            set => parsedPrixVente = value;
+        }
     }
 }

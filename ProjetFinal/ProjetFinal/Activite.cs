@@ -11,7 +11,7 @@ namespace ProjetFinal
     {
         string nom ="";
         string type ="";
-        double coutOrganisation = 0;
+        double prixOrganisation = 0;
         double prixVente = 0;
 
 
@@ -20,7 +20,7 @@ namespace ProjetFinal
         {
             this.nom = nom;
             this.type = type;
-            this.coutOrganisation = coutOrganisation;
+            this.prixOrganisation = coutOrganisation;
             this.prixVente = prixVente;
         }
 
@@ -36,10 +36,10 @@ namespace ProjetFinal
             set {  type = value; }
         }
 
-        public double CoutOrganisation
+        public double PrixOrganisation
         {
-            get { return coutOrganisation; }
-            set { coutOrganisation = value; }
+            get { return prixOrganisation; }
+            set { prixOrganisation = value; }
         }
 
         public double PrixVente
@@ -56,7 +56,7 @@ namespace ProjetFinal
 
         public override string ToString()
         {
-            return $"Nom: {Nom}, Type: {Type}, Cout d'organisation: {CoutOrganisation}, Prix de vente: {PrixVente}";
+            return $"Nom: {Nom}, Type: {Type}, Cout d'organisation: {PrixOrganisation}, Prix de vente: {PrixVente}";
         }
     }
 }

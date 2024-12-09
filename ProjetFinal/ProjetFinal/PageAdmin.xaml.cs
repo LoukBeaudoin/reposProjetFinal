@@ -73,7 +73,7 @@ namespace ProjetFinal
             {
                 try
                 {
-                    new Activite(dialog.Nom, dialog.Type, double.Parse(dialog.PrixOrg), double.Parse(dialog.PrixVente));
+                    new Activite(dialog.Nom, dialog.Type, dialog.PrixOrg, dialog.PrixVente);
                 }
                 catch (Exception ex)
                 {
@@ -144,14 +144,14 @@ namespace ProjetFinal
         }
         private async void Gv_Affichage_Activite_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (e.ClickedItem is Adherent clickedAdherent)
+            if (e.ClickedItem is Activite clickedActivite)
             {
-                var dialog = new DialogAjoutAdherent
+                var dialog = new DialogAjoutActivite
                 {
-                    Nom = clickedAdherent.Nom,
-                    Prenom = clickedAdherent.Prenom,
-                    Adresse = clickedAdherent.Adresse,
-                    DateNaissance = clickedAdherent.DateNaissance,
+                    Nom = clickedActivite.Nom,
+                    Type = clickedActivite.Type,
+                    PrixOrg = clickedActivite.PrixOrganisation,
+                    PrixVente = clickedActivite.PrixVente,
                     XamlRoot = this.XamlRoot,
                     PrimaryButtonText = "Modifier",
                     SecondaryButtonText = "Supprimer"
@@ -159,14 +159,11 @@ namespace ProjetFinal
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
                 {
-                    clickedAdherent.Nom = dialog.Nom;
-                    clickedAdherent.Prenom = dialog.Prenom;
-                    clickedAdherent.Adresse = dialog.Adresse;
-                    clickedAdherent.DateNaissance = dialog.DateNaissance;
+                    
                 }
                 else if (result == ContentDialogResult.Secondary)
                 {
-                    listeAdherent.Remove(clickedAdherent);
+                    listeActivite.Remove(clickedActivite);
                 }
                 else
                 {
