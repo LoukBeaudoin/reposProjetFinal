@@ -292,25 +292,34 @@ namespace ProjetFinal
 
         private async void Gv_Affichage_Adherent_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var clickedItem = e.ClickedItem as Adherent;
-            if (clickedItem != null)
-            {
-                var index = listeAdherent.IndexOf(clickedItem);
-                Adherent a = listeAdherent[index];
-                DialogAjoutAdherent dialog = new DialogAjoutAdherent();
-                dialog.XamlRoot = this.XamlRoot;
-                dialog.PrimaryButtonText = "Supprimer";
-                dialog.SecondaryButtonText = "Sauvegarder";
-                dialog.CloseButtonText = "Annuler";
-                dialog.Title = "Modifier un adhérent";
-                dialog.DefaultButton = ContentDialogButton.Close;
-                dialog.Nom = a.Nom;
-                dialog.Prenom = a.Prenom;
-                dialog.Adresse = a.Adresse;
-                dialog.DateNaissance = a.DateNaissance;
-                //id admin a faire
 
-                ContentDialogResult resultat = await dialog.ShowAsync();
+            if (e.ClickedItem is Adherent clickedAdherent)
+            {
+                var dialog = new DialogAjoutAdherent
+                {
+                    Nom = clickedAdherent.Nom,
+                    Prenom = clickedAdherent.Prenom,
+                    Adresse = clickedAdherent.Adresse,
+                    DateNaissance = clickedAdherent.DateNaissance,
+                };
+                dialog.XamlRoot = this.XamlRoot;
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    // Save changes back to the collection
+                    clickedAdherent.Nom = dialog.Nom;
+                    clickedAdherent.Prenom = dialog.Prenom;
+                    clickedAdherent.Adresse = dialog.Adresse;
+                    clickedAdherent.DateNaissance = dialog.DateNaissance;
+                }
+                else if (result == ContentDialogResult.Secondary)
+                {
+                    listeAdherent.Remove(clickedAdherent);
+                }
+                else
+                {
+                    Debug.WriteLine("Annulé (320)");
+                }
             }
         }
     }

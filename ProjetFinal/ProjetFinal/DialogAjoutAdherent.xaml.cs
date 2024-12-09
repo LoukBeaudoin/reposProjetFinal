@@ -12,25 +12,30 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace ProjetFinal
 {
-    public sealed partial class DialogAjoutAdherent : ContentDialog
+    public sealed partial class DialogAjoutAdherent : ContentDialog, INotifyPropertyChanged
     {
-        DateTime parsedDateNaissance;
-        string inputNom;
-        string inputPrenom;
-        string inputAdresse;
-        string inputDateNaissance;
+        public DateTime parsedDateNaissance;
+        public string inputNom;
+        public string inputPrenom;
+        public string inputAdresse;
+        public string inputDateNaissance;
+        public event PropertyChangedEventHandler PropertyChanged;
         public DialogAjoutAdherent()
         {
             this.InitializeComponent();
             this.DataContext = this;
         }
-
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private void OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             inputNom = tbx_nom.Text.Trim();

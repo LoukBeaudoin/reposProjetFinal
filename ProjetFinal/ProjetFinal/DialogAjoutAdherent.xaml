@@ -14,22 +14,22 @@
     <StackPanel>
         
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_nom" Header="Entrez le nom" />
+            <TextBox x:Name="tbx_nom" Text="{x:Bind Nom, Mode=TwoWay}" Header="Entrez le nom" />
             <TextBlock x:Name="erreur_nom" FontSize="15" Foreground="red" />
         </StackPanel>
         
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_prenom" Header="Entrez le prénom"  />
+            <TextBox x:Name="tbx_prenom" Text="{x:Bind Prenom, Mode=TwoWay}" Header="Entrez le prénom"  />
             <TextBlock x:Name="erreur_prenom" FontSize="15" Foreground="red" />
         </StackPanel>
         
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_adresse" Header="Entrez l'adresse" />
+            <TextBox x:Name="tbx_adresse" Text="{x:Bind Adresse, Mode=TwoWay}" Header="Entrez l'adresse" />
             <TextBlock x:Name="erreur_adresse" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_dateNaissance" Header="Entrez la date de naissance" />
+            <TextBox x:Name="tbx_dateNaissance" Text="{x:Bind DateNaissance, Mode=TwoWay}" Header="Entrez la date de naissance" />
             <!--attention-->
             <TextBlock x:Name="erreur_dateNaissance" FontSize="15" Foreground="red" />
         </StackPanel>
