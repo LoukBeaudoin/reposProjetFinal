@@ -29,44 +29,44 @@
         <TextBlock Text="Page Admin" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
         <Button x:Name="btn_test" Content="Test" Click="btn_test_Click" Grid.Row="3" Grid.Column="3"/>
 
-        <Button x:Name="btnAdherent" Content="Voir les Adhérents" Click="btnAdherent_Click" Grid.Row="1" Grid.Column="0" Margin="0,0,0,20" Background="LightGreen"/>
-        <Button x:Name="btnActivite" Content="Voir les Activités" Click="btnActivite_Click" Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen"/>
-        <Button x:Name="btnSeance" Content="Voir les Séances" Click="btnSeance_Click" Grid.Row="1" Grid.Column="2" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnAdherent" Content="Voir les Adhérents" Click="btnAdherent_Click" Grid.Row="2" Grid.Column="0" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnActivite" Content="Voir les Activités" Click="btnActivite_Click" Grid.Row="2" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnSeance" Content="Voir les Séances" Click="btnSeance_Click" Grid.Row="2" Grid.Column="2" Margin="0,0,0,20" Background="LightGreen"/>
 
-        <GridView ItemsSource="{x:Bind listeAdherent}" Margin="20" x:Name="Gv_Affichage_Adherent" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Adherent_ItemClick">
+        <GridView ItemsSource="{x:Bind listeAdherent}" Margin="20" x:Name="Gv_Affichage_Adherent" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Adherent_ItemClick" Grid.Row="1" Grid.Column="0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Adherent">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind NoIdentification, Mode=TwoWay}" x:Name="op1" FontSize="15"/>
-                        <StackPanel>
-                            <TextBlock Text="{x:Bind Prenom, Mode=TwoWay}" x:Name="op2" FontSize="15"/>
-                            <TextBlock Text=" - " />
-                            <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op3" FontSize="15"/>
+                        <TextBlock Text="{x:Bind NoIdentification, Mode=TwoWay}" x:Name="op1" FontSize="20"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind Prenom, Mode=TwoWay}" x:Name="op2" FontSize="20"/>
+                            <TextBlock Text=" - " FontSize="20"/>
+                            <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op3" FontSize="20"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
 
-        <GridView ItemsSource="{x:Bind listeActivite}" Margin="20" x:Name="Gv_Affichage_Activite" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Activite_ItemClick">
+        <GridView ItemsSource="{x:Bind listeActivite}" Margin="20" x:Name="Gv_Affichage_Activite" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Activite_ItemClick" Grid.Row="1" Grid.Column="0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Activite">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op1"/>
-                        <TextBlock Text="{x:Bind Type, Mode=TwoWay}" x:Name="op2"/>
-                        <TextBlock Text="{x:Bind PrixVente, Mode=TwoWay}" x:Name="op3"/>
+                        <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op1" FontSize="20"/>
+                        <TextBlock Text="{x:Bind Type, Mode=TwoWay}" x:Name="op2" FontSize="20"/>
+                        <TextBlock Text="{x:Bind PrixVente, Mode=TwoWay}" x:Name="op3" FontSize="20"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
 
-        <GridView ItemsSource="{x:Bind listeSeance}" Margin="20" x:Name="Gv_Affichage_Seance" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Seance_ItemClick">
+        <GridView ItemsSource="{x:Bind listeSeance}" Margin="20" x:Name="Gv_Affichage_Seance" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Seance_ItemClick" Grid.Row="1" Grid.Column="0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Seance" x:Name="dataTemplateSeance">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind Date, Mode=TwoWay}" x:Name="op1"/>
-                        <TextBlock Text="{x:Bind Heure, Mode=TwoWay}" x:Name="op2"/>
-                        <TextBlock Text="{x:Bind NbPlaces, Mode=TwoWay}" x:Name="op3"/>
+                        <TextBlock Text="{x:Bind Date, Mode=TwoWay}" x:Name="op1" FontSize="20"/>
+                        <TextBlock Text="{x:Bind Heure, Mode=TwoWay}" x:Name="op2" FontSize="20"/>
+                        <TextBlock Text="{x:Bind NbPlaces, Mode=TwoWay}" x:Name="op3" FontSize="20"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
