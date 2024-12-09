@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,11 +30,25 @@ namespace ProjetFinal
         public DialogAjoutActivite()
         {
             this.InitializeComponent();
+            this.DataContext = this;
+        }
+        
+        public void SetComboBoxSelection(string inputType)
+        {
+            int index = cbbx_categorie.Items.IndexOf(inputType);
+            if (index != -1)
+            {
+                cbbx_categorie.SelectedIndex = index;
+            }
+            else
+            {
+                cbbx_categorie.SelectedIndex = -1;
+            }
         }
         private void OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             inputNom = tbx_nom.Text.Trim();
-            inputType = cbbx_categorie.SelectedItem.ToString();
+            inputType = cbbx_categorie.SelectedValue?.ToString();
             inputPrixOrg = tbx_coutOrganisation.Text.Trim();
             inputPrixVente = tbx_prixDeVente.Text.Trim();
 
@@ -47,7 +62,7 @@ namespace ProjetFinal
             {
                 erreur_nom.Visibility = Visibility.Collapsed;
             }
-            if (cbbx_categorie.SelectedIndex == -1)
+            if (string.IsNullOrEmpty(inputType) || cbbx_categorie.SelectedIndex == -1)
             {
                 erreur_idCategorie.Visibility = Visibility.Visible;
                 erreur_idCategorie.Text = "Veuillez choisir une catégorie.";
