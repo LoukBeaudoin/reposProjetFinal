@@ -156,10 +156,14 @@ namespace ProjetFinal
                     PrimaryButtonText = "Modifier",
                     SecondaryButtonText = "Supprimer"
                 };
+                dialog.SetComboBoxSelection(clickedActivite.Type);
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
                 {
-                    
+                    clickedActivite.Nom = dialog.Nom;
+                    clickedActivite.Type = dialog.Type;
+                    clickedActivite.PrixOrganisation = dialog.PrixOrg;
+                    clickedActivite.PrixVente = dialog.PrixVente;
                 }
                 else if (result == ContentDialogResult.Secondary)
                 {
