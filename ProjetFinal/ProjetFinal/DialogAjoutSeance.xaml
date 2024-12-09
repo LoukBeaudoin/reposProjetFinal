@@ -6,12 +6,16 @@
     xmlns:local="using:ProjetFinal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    PrimaryButtonText="Ajouter"
+    SecondaryButtonText="Annuler"
+    PrimaryButtonClick="OnPrimaryButtonClick"
+    >
 
     <StackPanel>
         
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_dateOrganisation" Header="Entrez la date de la séance" />
+            <TextBox x:Name="tbx_dateOrganisation" Header="Entrez la date de la séance (YYYY/MM/DD)" />
             <TextBlock x:Name="erreur_dateOrganisation" FontSize="15" Foreground="red" />
         </StackPanel>
             
@@ -21,35 +25,26 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Id Admin">
-                <x:String>1</x:String>
-                <x:String>2</x:String>
-                <x:String>3</x:String>
-                <x:String>4</x:String>
-                <x:String>5</x:String>
-                <x:String>6</x:String>
-                <x:String>7</x:String>
-                <x:String>8</x:String>
-                <x:String>9</x:String>
-                <x:String>10</x:String>
+            <TimePicker x:Name="tp_heureSeance" Header="Choisir l'heure" />
+            <TextBlock x:Name="erreur_HeureSeance" FontSize="15" Foreground="red" />
+        </StackPanel>
+        <StackPanel Margin="5">
+            <ComboBox Header="Choisir l'activité de la séance" x:Name="idActivite">
+                
+                 <!--verifier pour le nom-->
             </ComboBox>
-            <TextBlock x:Name="erreur_idAdmin" FontSize="15" Foreground="red" />
+            <TextBlock x:Name="erreur_ChoixActivite" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Id activité"> <!--verifier pour le nom-->
+            <ComboBox Header="Note (/5)" x:Name="noteApp">
                 <x:String>1</x:String>
                 <x:String>2</x:String>
                 <x:String>3</x:String>
                 <x:String>4</x:String>
                 <x:String>5</x:String>
-                <x:String>6</x:String>
-                <x:String>7</x:String>
-                <x:String>8</x:String>
-                <x:String>9</x:String>
-                <x:String>10</x:String>
             </ComboBox>
-            <TextBlock x:Name="erreur_idActivite" FontSize="15" Foreground="red" />
+            <TextBlock x:Name="erreur_NoteApp" FontSize="15" Foreground="red" />
         </StackPanel>
 
     </StackPanel>

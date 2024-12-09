@@ -19,13 +19,16 @@ namespace ProjetFinal
         public static SingletonListeAdherent GetInstance()
         {
             if (instance == null)
+            {
                 instance = new SingletonListeAdherent();
+            }
+                
 
             return instance;
         }
 
 
-        public ObservableCollection<Adherent> GetListeActivite()
+        public ObservableCollection<Adherent> GetListeAdherent()
         {
             return liste;
         }

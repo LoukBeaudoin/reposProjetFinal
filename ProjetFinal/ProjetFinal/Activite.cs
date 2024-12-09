@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Activite
+    internal class Activite : INotifyPropertyChanged
     {
         string nom ="";
         string type ="";
@@ -46,7 +47,11 @@ namespace ProjetFinal
             get { return prixVente; }
             set { prixVente = value; }
         }
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 
         public override string ToString()

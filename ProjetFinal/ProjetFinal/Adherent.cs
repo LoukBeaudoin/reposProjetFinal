@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Adherent
+    internal class Adherent : INotifyPropertyChanged
     {
         string noIdentification="";
         string nom="";
@@ -18,7 +18,7 @@ namespace ProjetFinal
 
         public Adherent() { }
 
-        public Adherent(string noIdentification, string nom, string prenom, string adresse, DateTime dateNaissance)
+        public Adherent(string nom, string prenom, string adresse, DateTime dateNaissance)
         {
             this.noIdentification = noIdString(nom, prenom, dateNaissance);
             this.nom = nom;

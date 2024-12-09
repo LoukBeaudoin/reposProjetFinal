@@ -25,7 +25,7 @@ namespace ProjetFinal
         }
 
 
-        public ObservableCollection<Seance> GetListeActivite()
+        public ObservableCollection<Seance> GetListeSeance()
         {
             return liste;
         }

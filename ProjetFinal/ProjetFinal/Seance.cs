@@ -12,11 +12,11 @@ namespace ProjetFinal
         DateTime date;
         string heure = "";
         int nbPlaces = 0;
-        double note=0;
+        int note=0;
 
         public Seance() { }
 
-        public Seance(DateTime date, string heure, int nbPlaces, double note)
+        public Seance(DateTime date, string heure, int nbPlaces, int note)
         {
             this.date = date;
             this.heure = heure;
@@ -42,7 +42,7 @@ namespace ProjetFinal
             set { nbPlaces = value; }
         }
 
-        public double Note
+        public int Note
         {
             get { return note; }
             set { note = value; }

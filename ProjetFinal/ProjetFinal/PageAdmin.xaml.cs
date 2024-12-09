@@ -5,8 +5,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,73 +26,129 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAdmin : Page
     {
+        ObservableCollection<Adherent> listeAdherent = SingletonListeAdherent.GetInstance().GetListeAdherent();
+        ObservableCollection<Activite> listeActivite = SingletonListeActivites.GetInstance().GetListeActivite();
+        ObservableCollection<Seance> listeSeance = SingletonListeSeance.GetInstance().GetListeSeance();
+        
         public PageAdmin()
         {
             this.InitializeComponent();
+            Adherent adherentTest = new Adherent("mil", "mea", "assds", new DateTime(2006 / 07 / 19));
+            listeAdherent.Add(adherentTest);
+            Activite activiteTest = new Activite("as", "ass", 12, 13);
+            listeActivite.Add(activiteTest);
         }
-
-
-        private async void btn_test_Click(object sender, RoutedEventArgs e)
-        {
-            MonDialogue dialog = new MonDialogue();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = "Authentification";
-            dialog.PrimaryButtonText = "Annuler";
-            dialog.CloseButtonText = "Se connecter";
-            dialog.DefaultButton = ContentDialogButton.Close;
-
-            ContentDialogResult resultat = await dialog.ShowAsync();
-
-
-        }
-
 
         private async void btn_ajout_adherent_Click(object sender, RoutedEventArgs e)
         {
             DialogAjoutAdherent dialog = new DialogAjoutAdherent();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.PrimaryButtonText = "Ajouter";
-            dialog.CloseButtonText = "Annuler";
             dialog.Title = "Nouveau adhérent";
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            if (resultat == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    Adherent adherent = new Adherent(dialog.Nom, dialog.Prenom, dialog.Adresse, dialog.DateNaissance);
+                    SingletonListeAdherent.GetInstance().Ajouter(adherent);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Console.WriteLine("Action canceled.");
+            }
         }
 
         private async void btn_ajout_activite_Click(object sender, RoutedEventArgs e)
         {
             DialogAjoutActivite dialog = new DialogAjoutActivite();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.PrimaryButtonText = "Ajouter";
-            dialog.CloseButtonText = "Annuler";
             dialog.Title = "Nouvelle activité";
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            if (resultat == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    new Activite(dialog.Nom, dialog.Type, double.Parse(dialog.PrixOrg), double.Parse(dialog.PrixVente));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Console.WriteLine("Action canceled.");
+            }
         }
 
         private async void btn_ajout_seance_Click(object sender, RoutedEventArgs e)
         {
             DialogAjoutSeance dialog = new DialogAjoutSeance();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.PrimaryButtonText = "Ajouter";
-            dialog.CloseButtonText = "Annuler";
             dialog.Title = "Nouvelle séance";
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            Console.WriteLine(resultat);
+            if (resultat == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    new Seance(dialog.DateOrg, dialog.HeureSeance, dialog.NbPlaces, int.Parse( dialog.NoteAppr));
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Console.WriteLine("Action canceled.");
+            }
+
+
         }
 
-        private async void btn_modifier_adherent_Click(object sender, RoutedEventArgs e)
+        private async void BtnModifierAdherent(Adherent adherent)
         {
-            DialogModifierAdherent dialog = new DialogModifierAdherent();
+            DialogAjoutAdherent dialog = new DialogAjoutAdherent();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.PrimaryButtonText = "Modifier";
-            dialog.CloseButtonText = "Annuler";
             dialog.Title = "Modifier Adhérent";
-            dialog.DefaultButton = ContentDialogButton.Close;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.SecondaryButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close; 
+
+            dialog.Nom = adherent.Nom;
+            dialog.Prenom = adherent.Prenom;
+            dialog.Adresse = adherent.Adresse;
+            dialog.DateNaissance = adherent.DateNaissance;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    new Adherent(dialog.Nom, dialog.Prenom, dialog.Adresse, dialog.DateNaissance);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (resultat == ContentDialogResult.Secondary)
+            {
+                Console.WriteLine("Action canceled.");
+            }
         }
 
         private async void btn_modifier_activite_Click(object sender, RoutedEventArgs e)
@@ -149,6 +208,110 @@ namespace ProjetFinal
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private void btnAdherent_Click(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = listeAdherent;
+            Gv_Affichage_Adherent.Visibility = Visibility.Visible;
+            Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
+            Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnActivite_Click(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = listeActivite;
+            Gv_Affichage_Activite.Visibility = Visibility.Visible;
+            Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
+            Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnSeance_Click(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = listeSeance;
+            Gv_Affichage_Seance.Visibility = Visibility.Visible;
+            Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
+            Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
+        }
+
+
+
+
+        private async void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+            MonDialogue dialog = new MonDialogue();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Authentification";
+            dialog.PrimaryButtonText = "Annuler";
+            dialog.CloseButtonText = "Se connecter";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+
+        }
+
+        private void supprimerAdherent_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void modifierAdherent_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            // Get the item (Adherent) associated with the clicked button
+            var clickedItem = button?.DataContext as Adherent;
+
+            // Get the index of the clicked item in the ObservableCollection
+            if (clickedItem != null)
+            {
+                var index = listeAdherent.IndexOf(clickedItem);
+                Debug.WriteLine($"Item clicked: {clickedItem.NoIdentification}");
+                Debug.WriteLine($"Item index: {index}");
+            }
+        }
+        private void supprimerActivite_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void modifierActivite_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void supprimerSeance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void modifierSeance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void Gv_Affichage_Adherent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var clickedItem = e.ClickedItem as Adherent;
+            if (clickedItem != null)
+            {
+                var index = listeAdherent.IndexOf(clickedItem);
+                Adherent a = listeAdherent[index];
+                DialogAjoutAdherent dialog = new DialogAjoutAdherent();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.PrimaryButtonText = "Supprimer";
+                dialog.SecondaryButtonText = "Sauvegarder";
+                dialog.CloseButtonText = "Annuler";
+                dialog.Title = "Modifier un adhérent";
+                dialog.DefaultButton = ContentDialogButton.Close;
+                dialog.Nom = a.Nom;
+                dialog.Prenom = a.Prenom;
+                dialog.Adresse = a.Adresse;
+                dialog.DateNaissance = a.DateNaissance;
+                //id admin a faire
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }
         }
     }
 }
