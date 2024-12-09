@@ -169,10 +169,6 @@ namespace ProjetFinal
                 {
                     listeActivite.Remove(clickedActivite);
                 }
-                else
-                {
-                    Debug.WriteLine("Annulé (320)");
-                }
             }
         }
         private async void Gv_Affichage_Seance_ItemClick(object sender, ItemClickEventArgs e)
