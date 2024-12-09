@@ -37,9 +37,12 @@
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Adherent">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind NoIdentification, Mode=TwoWay}" x:Name="op1"/>
-                        <TextBlock Text="{x:Bind Prenom, Mode=TwoWay}" x:Name="op2"/>
-                        <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op3"/>
+                        <TextBlock Text="{x:Bind NoIdentification, Mode=TwoWay}" x:Name="op1" FontSize="15"/>
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Prenom, Mode=TwoWay}" x:Name="op2" FontSize="15"/>
+                            <TextBlock Text=" - " />
+                            <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op3" FontSize="15"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
