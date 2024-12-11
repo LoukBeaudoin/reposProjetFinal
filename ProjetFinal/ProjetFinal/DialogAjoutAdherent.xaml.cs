@@ -21,7 +21,7 @@ namespace ProjetFinal
 {
     public sealed partial class DialogAjoutAdherent : ContentDialog, INotifyPropertyChanged
     {
-        public DateTime parsedDateNaissance;
+        public DateTimeOffset parsedDateNaissance;
         public string inputNom;
         public string inputPrenom;
         public string inputAdresse;
@@ -38,11 +38,6 @@ namespace ProjetFinal
         }
         private void OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            inputNom = tbx_nom.Text.Trim();
-            inputPrenom = tbx_prenom.Text.Trim();
-            inputAdresse = tbx_adresse.Text.Trim();
-            inputDateNaissance = tbx_dateNaissance.Text;
-
             if (inputNom == string.Empty)
             {
                 erreur_nom.Visibility = Visibility.Visible;
@@ -63,10 +58,10 @@ namespace ProjetFinal
             {
                 erreur_prenom.Visibility= Visibility.Collapsed;
             }
-            if (!DateTime.TryParse(inputDateNaissance, out parsedDateNaissance))
+            if (DateNaissance == default)
             {
                 erreur_dateNaissance.Visibility = Visibility.Visible;
-                erreur_dateNaissance.Text = "Veuillez entrer une date de naissance valide (YYYY/MM/DD).";
+                erreur_dateNaissance.Text = "Veuillez entrer une date valide.";
                 args.Cancel = true;
             }
             else
@@ -84,7 +79,7 @@ namespace ProjetFinal
                 erreur_adresse.Visibility = Visibility.Collapsed;
             }
         }
-        public DateTime DateNaissance
+        public DateTimeOffset DateNaissance
         {
             get => parsedDateNaissance;
             set => parsedDateNaissance = value;

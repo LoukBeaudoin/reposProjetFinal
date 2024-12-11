@@ -9,14 +9,14 @@ namespace ProjetFinal
     internal class Seance
     {
 
-        DateTime date;
-        string heure = "";
+        DateTimeOffset date;
+        TimeSpan heure;
         int nbPlaces = 0;
         int note=0;
 
         public Seance() { }
 
-        public Seance(DateTime date, string heure, int nbPlaces, int note)
+        public Seance(DateTimeOffset date, TimeSpan heure, int nbPlaces, int note)
         {
             this.date = date;
             this.heure = heure;
@@ -24,13 +24,12 @@ namespace ProjetFinal
             this.note = note;
         }
 
-        public DateTime Date
+        public DateTimeOffset Date
         {
             get { return date; }
             set { date = value; }
         }
-
-        public string Heure
+        public TimeSpan Heure
         {
             get { return heure; }
             set { heure = value; }
