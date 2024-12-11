@@ -40,7 +40,7 @@
                         <TextBlock Text="{x:Bind NoIdentification, Mode=TwoWay}" x:Name="op1" FontSize="20"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{x:Bind Prenom, Mode=TwoWay}" x:Name="op2" FontSize="20"/>
-                            <TextBlock Text=" - test " FontSize="20"/>
+                            <TextBlock Text=" - " FontSize="20"/>
                             <TextBlock Text="{x:Bind Nom, Mode=TwoWay}" x:Name="op3" FontSize="20"/>
                         </StackPanel>
                     </StackPanel>
