@@ -28,6 +28,7 @@ namespace ProjetFinal
         public int inputNbPlaces;
         public TimeSpan inputHeure;
         public string inputNoteAppreciation;
+        private ComboBoxItem selectedComboBoxItem;
 
         public event PropertyChangedEventHandler PropertyChanged;
         ObservableCollection<Activite> activites;
@@ -45,7 +46,7 @@ namespace ProjetFinal
                 idActivite.Items.Add(comboBoxItem);
             }
         }
-
+        
 
 
         private void OnPropertyChanged(string propertyName)
@@ -126,6 +127,17 @@ namespace ProjetFinal
         {
             get => parsedNoteApp;
             set => parsedNoteApp = value;
+        }
+        
+        public ComboBoxItem SelectedComboBoxItem
+        {
+            get => selectedComboBoxItem;
+            set
+            {
+                selectedComboBoxItem = value;
+                NoteAppreciation = int.Parse((string)value?.Content); // Convert Content to int
+                OnPropertyChanged(nameof(SelectedComboBoxItem));
+            }
         }
     }
 }

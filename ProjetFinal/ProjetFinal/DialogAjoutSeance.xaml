@@ -14,7 +14,7 @@
     <StackPanel>
         
         <StackPanel Margin="5">
-            <DatePicker x:Name="tbx_dateOrganisation" Date="{x:Bind DateOrg, Mode=TwoWay}" Header="Entrez la date de la séance (YYYY/MM/DD)" />
+            <DatePicker x:Name="tbx_dateOrganisation" Date="{x:Bind DateOrg, Mode=TwoWay}" Header="Entrez la date de la séance" />
             <TextBlock x:Name="erreur_dateOrganisation" FontSize="15" Foreground="red" />
         </StackPanel>
             
@@ -36,12 +36,13 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Note (/5)" SelectedValue="{x:Bind NoteAppreciation, Mode=TwoWay}" x:Name="cbbx_Note_App">
-                <x:String>1</x:String>
-                <x:String>2</x:String>
-                <x:String>3</x:String>
-                <x:String>4</x:String>
-                <x:String>5</x:String>
+            <ComboBox Header="Note (/5)" 
+          SelectedItem="{x:Bind SelectedComboBoxItem, Mode=TwoWay}">
+                <ComboBoxItem Content="1" />
+                <ComboBoxItem Content="2" />
+                <ComboBoxItem Content="3" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="5" />
             </ComboBox>
             <TextBlock x:Name="erreur_NoteApp" FontSize="15" Foreground="red" />
         </StackPanel>
