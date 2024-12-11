@@ -55,7 +55,7 @@ namespace ProjetFinal
         }
 
 
-        //private void Authentification_PropertyChanged(object sender, PropertyChangedEventArgs e) 
+        //private void Authentification_PropertyChanged(object sender, PropertyChangedEventArgs e)
         //{
         //    if (e.PropertyName == nameof(Authentification.Connecter))
         //    {

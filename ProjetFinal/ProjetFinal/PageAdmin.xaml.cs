@@ -47,14 +47,14 @@ namespace ProjetFinal
             DialogAjoutAdherent dialog = new DialogAjoutAdherent();
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Nouveau adhérent";
+            dialog.PrimaryButtonText = "Ajouter";
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
             if (resultat == ContentDialogResult.Primary)
             {
                 try
                 {
-                    Adherent adherent = new Adherent(dialog.Nom, dialog.Prenom, dialog.Adresse, dialog.DateNaissance);
-                    SingletonListeAdherent.GetInstance().Ajouter(adherent);
+                    SingletonListeAdherent.GetInstance().Liste.Add(new Adherent(dialog.Nom, dialog.Prenom, dialog.Adresse, dialog.DateNaissance));
                 }
                 catch (Exception ex)
                 {
@@ -71,13 +71,14 @@ namespace ProjetFinal
             DialogAjoutActivite dialog = new DialogAjoutActivite();
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Nouvelle activité";
+            dialog.PrimaryButtonText = "Ajouter";
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
             if (resultat == ContentDialogResult.Primary)
             {
                 try
                 {
-                    new Activite(dialog.Nom, dialog.Type, dialog.PrixOrg, dialog.PrixVente);
+                    SingletonListeActivites.GetInstance().Liste.Add(new Activite(dialog.Nom, dialog.Type, dialog.PrixOrg, dialog.PrixVente));
                 }
                 catch (Exception ex)
                 {
@@ -94,6 +95,7 @@ namespace ProjetFinal
             DialogAjoutSeance dialog = new DialogAjoutSeance();
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Nouvelle séance";
+            dialog.PrimaryButtonText = "Ajouter";
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
             Console.WriteLine(resultat);
@@ -215,13 +217,16 @@ namespace ProjetFinal
             if (Gv_Affichage_Adherent.Visibility == Visibility.Visible)
             {
                 Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
+                btnAdherentAjout.Visibility = Visibility.Collapsed;
             }
             else
             {
                 Gv_Affichage_Adherent.Visibility = Visibility.Visible;
+                btnAdherentAjout.Visibility = Visibility.Visible;
             }
             Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
             Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
+
         }
         private void btnActivite_Click(object sender, RoutedEventArgs e)
         {
@@ -229,10 +234,12 @@ namespace ProjetFinal
             if (Gv_Affichage_Activite.Visibility == Visibility.Visible)
             {
                 Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
+                btnActiviteAjout.Visibility = Visibility.Collapsed;
             }
             else
             {
                 Gv_Affichage_Activite.Visibility = Visibility.Visible;
+                btnActiviteAjout.Visibility = Visibility.Visible;
             }
             Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
             Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
@@ -243,10 +250,12 @@ namespace ProjetFinal
             if (Gv_Affichage_Seance.Visibility == Visibility.Visible)
             {
                 Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
+                btnSeanceAjout.Visibility = Visibility.Collapsed;
             }
             else
             {
                 Gv_Affichage_Seance.Visibility = Visibility.Visible;
+                btnSeanceAjout .Visibility = Visibility.Visible;
             }
             Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
             Gv_Affichage_Activite.Visibility = Visibility.Collapsed;

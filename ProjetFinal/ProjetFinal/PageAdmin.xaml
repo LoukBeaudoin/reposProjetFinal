@@ -31,8 +31,11 @@
         <TextBlock Text="Page Admin" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
 
         <Button x:Name="btnAdherent" Content="Voir les Adhérents" Click="btnAdherent_Click" Grid.Row="1" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnAdherentAjout" Content="Ajouter un Adhérent" Click="btn_ajout_adherent_Click" Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen" Visibility="Collapsed"/>
         <Button x:Name="btnActivite" Content="Voir les Activités" Click="btnActivite_Click" Grid.Row="3" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnActiviteAjout" Content="Ajouter une Activité" Click="btn_ajout_activite_Click" Grid.Row="3" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen" Visibility="Collapsed"/>
         <Button x:Name="btnSeance" Content="Voir les Séances" Click="btnSeance_Click" Grid.Row="5" Margin="0,0,0,20" Background="LightGreen"/>
+        <Button x:Name="btnSeanceAjout" Content="Ajouter une Séance" Click="btn_ajout_seance_Click" Grid.Row="5" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen" Visibility="Collapsed"/>
 
         <GridView ItemsSource="{x:Bind listeAdherent}" Margin="20" x:Name="Gv_Affichage_Adherent" Visibility="Collapsed" IsItemClickEnabled="True" ItemClick="Gv_Affichage_Adherent_ItemClick" Grid.Row="2" Grid.ColumnSpan="4">
             <GridView.ItemTemplate>

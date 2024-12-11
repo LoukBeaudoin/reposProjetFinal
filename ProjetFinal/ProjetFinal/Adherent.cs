@@ -73,7 +73,14 @@ namespace ProjetFinal
         public string NoIdentification
         {
             get { return noIdentification; }
-            set { noIdentification = value; }
+            set
+            {
+                if (noIdentification != value)
+                {
+                    noIdentification = value;
+                    OnPropertyChanged(nameof(noIdentification));
+                }
+            }
         }
         public string Nom
         {
