@@ -189,6 +189,7 @@ namespace ProjetFinal
                     PrimaryButtonText = "Modifier",
                     SecondaryButtonText = "Supprimer"
                 };
+                //dialog.SetComboBoxSelection(dialog.NoteAppreciation);
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
                 {
@@ -211,21 +212,42 @@ namespace ProjetFinal
         private void btnAdherent_Click(object sender, RoutedEventArgs e)
         {
             this.DataContext = listeAdherent;
-            Gv_Affichage_Adherent.Visibility = Visibility.Visible;
+            if (Gv_Affichage_Adherent.Visibility == Visibility.Visible)
+            {
+                Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Gv_Affichage_Adherent.Visibility = Visibility.Visible;
+            }
             Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
             Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
         }
         private void btnActivite_Click(object sender, RoutedEventArgs e)
         {
             this.DataContext = listeActivite;
-            Gv_Affichage_Activite.Visibility = Visibility.Visible;
+            if (Gv_Affichage_Activite.Visibility == Visibility.Visible)
+            {
+                Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Gv_Affichage_Activite.Visibility = Visibility.Visible;
+            }
             Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
             Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
         }
         private void btnSeance_Click(object sender, RoutedEventArgs e)
         {
             this.DataContext = listeSeance;
-            Gv_Affichage_Seance.Visibility = Visibility.Visible;
+            if (Gv_Affichage_Seance.Visibility == Visibility.Visible)
+            {
+                Gv_Affichage_Seance.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Gv_Affichage_Seance.Visibility = Visibility.Visible;
+            }
             Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
             Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
         }
