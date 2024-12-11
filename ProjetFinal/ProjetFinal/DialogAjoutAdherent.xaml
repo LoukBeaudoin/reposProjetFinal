@@ -28,13 +28,13 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <DatePicker x:Name="tbx_dateNaissance" Date="{x:Bind DateNaissance, Mode=TwoWay}" Header="Entrez la date de naissance" />
+            <DatePicker x:Name="tbx_dateNaissance" SelectedDate="{x:Bind DateNaissance, Mode=TwoWay}" Header="Entrez la date de naissance" />
             <!--attention-->
             <TextBlock x:Name="erreur_dateNaissance" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Id Admin">
+            <ComboBox Header="Id Admin" x:Name="cbbx_admin">
                 <x:String>1</x:String>
                 <x:String>2</x:String>
                 <x:String>3</x:String>

@@ -31,6 +31,7 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             Statistique();
+            AfficherIdSession();
         }
 
         private void Statistique()
@@ -102,5 +103,17 @@ namespace ProjetFinal
 
 
         }
+
+
+        private void AfficherIdSession()
+        {
+            if (Adherent.CurrentAdherent != null)
+            {
+                string idIdentifiant = Adherent.CurrentAdherent.NoIdentification;
+                sessionIdentifiant.Text = $"{idIdentifiant}";
+            }
+        }
+
+
     }
 }

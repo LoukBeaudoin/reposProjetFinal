@@ -27,7 +27,8 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Page Statistique" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
-
+        <TextBlock x:Name="sessionIdentifiant" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="20"/>
+        
         <StackPanel x:Name="stk_nbTotalAdherent" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>

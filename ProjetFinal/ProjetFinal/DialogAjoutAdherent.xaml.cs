@@ -78,6 +78,17 @@ namespace ProjetFinal
             {
                 erreur_adresse.Visibility = Visibility.Collapsed;
             }
+
+            //ici ajout adherent
+            string nom = tbx_nom.Text;
+            string prenom = tbx_prenom.Text;
+            string adresse = tbx_adresse.Text;
+            DateTimeOffset dateTimeOffset = tbx_dateNaissance.Date;
+            DateTime dateNaissance = dateTimeOffset.DateTime;
+            int idAdmin = Convert.ToInt32(cbbx_admin.SelectedItem);
+            Adherent adherent = new Adherent(nom, prenom, adresse, dateNaissance);
+            double age = adherent.calculAge();
+            SingletonBD.getInstance().AjouterAdherent(nom,prenom,adresse,dateNaissance,age,idAdmin);
         }
         public DateTimeOffset DateNaissance
         {

@@ -3,6 +3,7 @@ using Mysqlx.Expr;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration.Internal;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace ProjetFinal
         ObservableCollection<Adherent> listeAdherent;
         MySqlConnection con;
         static SingletonBD instance = null;
+        int idActivite = 15;
+        int idSeances = 15;
 
         public ObservableCollection<Activite> Liste { get => liste; }
         public ObservableCollection<Adherent> ListeAdherent { get => listeAdherent; }
@@ -162,7 +165,7 @@ namespace ProjetFinal
             return adherentActivite;
 
         }
-
+        
 
         //L'adhérent avec le plus de séance
         public string getAdherentMaxSeance()
@@ -213,6 +216,7 @@ namespace ProjetFinal
             commande.Connection = con;
             commande.CommandText = "SELECT nom, ROUND(AVG(noteAppreciation)) as moyenne FROM inscription\r\nINNER JOIN a2024_420335ri_eq3.seances s on inscription.idSeance = s.idSeances\r\nINNER JOIN a2024_420335ri_eq3.activites a on s.idActivite = a.idActivite\r\nGROUP BY nom";
             Dictionary<string, int> activiteNote = new Dictionary<string, int>();
+       
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
@@ -249,6 +253,7 @@ namespace ProjetFinal
 
         }
 
+        //Authentification administrateur
         public bool Connexion(string Nom, string Mdp) 
         {
             MySqlCommand commande = new MySqlCommand();
@@ -271,6 +276,97 @@ namespace ProjetFinal
             r.Close();
             con.Close();
             return authentification;
+        }
+
+
+        //Identifiant Connecter
+        public string getIdentifiantSession(string Identifiant)
+        {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                con.Open();
+                commande.CommandText = "SELECT noIdentification FROM adherents where noIdentification = @Identifiant";
+                commande.Parameters.AddWithValue("@Identifiant", Identifiant);
+                MySqlDataReader r = commande.ExecuteReader();
+                string ididentifiant = "";
+                if (r.Read() == true)
+                {
+                    ididentifiant = r["noIdentification"].ToString();
+                }
+
+                r.Close();
+                con.Close();
+            return ididentifiant;
+
+        }
+
+        //Ajouter Activite
+        public void AjouterActivite(string nom,double coutOrganisation, double prixdeVente,int idAdmin,int idCategorie )
+        {
+            int coutOrganisationInt = Convert.ToInt32(coutOrganisation);
+            int prixDeVenteInt = Convert.ToInt32(prixdeVente);
+            ++idActivite;
+
+            MySqlCommand commandeInsert = new MySqlCommand();
+            commandeInsert.Connection = con;
+            commandeInsert.CommandText = "insert into activites(idActivite,nom,coutOrganisation,prixDeVente,IdAdmin,IdCategorie) values(@idActivite,@nom, @coutOrganisation, @prixDeVente,@idAdmin,@idCategorie) ";
+            commandeInsert.Parameters.AddWithValue("@idActivite", idActivite);
+            commandeInsert.Parameters.AddWithValue("@nom", nom);
+            commandeInsert.Parameters.AddWithValue("@coutOrganisation", coutOrganisationInt);
+            commandeInsert.Parameters.AddWithValue("@prixDeVente", prixDeVenteInt);
+            commandeInsert.Parameters.AddWithValue("@idAdmin", idAdmin);
+            commandeInsert.Parameters.AddWithValue("@idCategorie", idCategorie);
+
+            con.Open();
+            commandeInsert.ExecuteNonQuery();
+
+            con.Close();
+
+        }
+
+
+        //Ajout adherent
+        public void AjouterAdherent(string nom, string prenom, string adresse, DateTime dateNaissance, double age,int idAdmin)
+        {
+
+            
+            int ageInt = Convert.ToInt32(Math.Round(age));
+            MySqlCommand commandeInsert = new MySqlCommand();
+            commandeInsert.Connection = con;
+            commandeInsert.CommandText = "insert into adherents(nom,prenom,adresse,dateNaissance,age,idAdmin) values(@nom, @prenom, @adresse,@dateNaissance,@age,@idAdmin) ";
+            commandeInsert.Parameters.AddWithValue("@nom", nom);
+            commandeInsert.Parameters.AddWithValue("@prenom", prenom);
+            commandeInsert.Parameters.AddWithValue("@adresse", adresse);
+            commandeInsert.Parameters.AddWithValue("@dateNaissance", dateNaissance);
+            commandeInsert.Parameters.AddWithValue("@age", ageInt);
+            commandeInsert.Parameters.AddWithValue("@idAdmin", idAdmin);
+
+            con.Open();
+            commandeInsert.ExecuteNonQuery();
+
+            con.Close();
+
+        }
+
+
+        public void AjouterSeance(DateTime dateOrganisation,int nbPlaceDispo,int idActivite)
+        {
+
+            ++idSeances;
+            MySqlCommand commandeInsert = new MySqlCommand();
+            commandeInsert.Connection = con;
+            commandeInsert.CommandText = "insert into seances(idSeances,dateOrganisation,nbPlaceDispo,idActivite) values(@idSeances, @dateOrganisation, @nbPlaceDispo, @idActivite) ";
+            commandeInsert.Parameters.AddWithValue("@idSeances", idSeances);
+            commandeInsert.Parameters.AddWithValue("@dateOrganisation", dateOrganisation);
+            commandeInsert.Parameters.AddWithValue("@nbPlaceDispo", nbPlaceDispo);
+            commandeInsert.Parameters.AddWithValue("@idActivite", idActivite);
+
+
+            con.Open();
+            commandeInsert.ExecuteNonQuery();
+
+            con.Close();
+
         }
 
 

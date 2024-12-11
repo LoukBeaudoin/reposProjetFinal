@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -30,6 +30,7 @@ namespace ProjetFinal
             //this.DataContext = SingletonBD.getInstance();
             SingletonBD.getInstance().getActiviteAccueil();
             SingletonBD.getInstance().getAdherentAccueil();
+            AfficherIdSession();
         }
 
         public ObservableCollection<Activite> Liste
@@ -43,10 +44,31 @@ namespace ProjetFinal
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Authentification";
             dialog.PrimaryButtonText = "Se Connecter";
-            dialog.SecondaryButtonText = "D�connexion";
+            dialog.SecondaryButtonText = "Déconnexion";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private async void btn_session_Click(object sender, RoutedEventArgs e)
+        {
+            SessionAdherent dialog = new SessionAdherent();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Authentification";
+            dialog.PrimaryButtonText = "Se Connecter";
+            dialog.SecondaryButtonText = "D�connexion";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        private void AfficherIdSession()
+        {
+            if (Adherent.CurrentAdherent != null)
+            {
+                string idIdentifiant = Adherent.CurrentAdherent.NoIdentification;
+                sessionIdentifiant.Text = $"{idIdentifiant}";
+            }
         }
 
         //public ObservableCollection<Adherent> ListeAdherent

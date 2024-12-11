@@ -43,7 +43,7 @@ namespace ProjetFinal
             {
                 ComboBoxItem comboBoxItem = new ComboBoxItem();
                 comboBoxItem.Content = item.Nom;
-                idActivite.Items.Add(comboBoxItem);
+                cbbox_idActivite.Items.Add(comboBoxItem);
             }
         }
         
@@ -77,16 +77,7 @@ namespace ProjetFinal
                 erreur_nbPlaceDispo.Visibility = Visibility.Collapsed;
             }
 
-            if (Heure == default)
-            {
-                erreur_HeureSeance.Visibility = Visibility.Visible;
-                erreur_HeureSeance.Text = "Veuillez choisir une heure valide.";
-                args.Cancel = true;
-            }
-            else
-            {
-                erreur_HeureSeance.Visibility = Visibility.Collapsed;
-            }
+            
 
             //if (string.IsNullOrEmpty(inputNoteAppreciation) || cbbx_Note_App.SelectedIndex == -1 || !Int32.TryParse(inputNoteAppreciation, out parsedNoteApp))
             //{
@@ -104,6 +95,13 @@ namespace ProjetFinal
                 
                 inputHeure = Heure;
             }
+
+            //Ici ajout seance 
+            DateTimeOffset dateTimeOffset = tbx_dateOrganisation.Date;
+            DateTime dateOrganisation = dateTimeOffset.DateTime;
+            int nbPlaceDispo = Convert.ToInt32(tbx_nbPlaceDispo.Text);
+            int idActivite = Convert.ToInt32(cbbox_idActivite.SelectedItem);
+            SingletonBD.getInstance().AjouterSeance(dateOrganisation, nbPlaceDispo, idActivite);
 
 
         }

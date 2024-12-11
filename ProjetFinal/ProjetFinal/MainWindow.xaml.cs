@@ -30,8 +30,8 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             mainWindow.Navigate(typeof(PageActivites));
-            //Authentification.getInstance().PropertyChanged += Authentification_PropertyChanged;
-            //ModifierVisibilite();
+            Authentification.getInstance().PropertyChanged += Authentification_PropertyChanged;
+            ModifierVisibilite();
         }
 
         private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -55,26 +55,26 @@ namespace ProjetFinal
         }
 
 
-        //private void Authentification_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == nameof(Authentification.Connecter))
-        //    {
-        //        ModifierVisibilite();
-        //    }
-        //}
+        private void Authentification_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Authentification.Connecter))
+            {
+                ModifierVisibilite();
+            }
+        }
 
-        //private void ModifierVisibilite()
-        //{
-        //    bool estConnecter = Authentification.getInstance().Connecter;
-        //    if (estConnecter)
-        //    {
-        //        pageAdmin.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        pageAdmin.Visibility = Visibility.Collapsed;
-        //    }
-        //}
+        private void ModifierVisibilite()
+        {
+            bool estConnecter = Authentification.getInstance().Connecter;
+            if (estConnecter)
+            {
+                pageAdmin.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pageAdmin.Visibility = Visibility.Collapsed;
+            }
+        }
 
     }
 }

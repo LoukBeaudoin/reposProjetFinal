@@ -32,7 +32,7 @@ namespace ProjetFinal
             this.InitializeComponent();
             this.DataContext = this;
         }
-        
+
         public void SetComboBoxSelection(string inputType)
         {
             int index = cbbx_categorie.Items.IndexOf(inputType);
@@ -92,6 +92,14 @@ namespace ProjetFinal
             {
                 erreur_prixDeVente.Visibility = Visibility.Collapsed;
             }
+
+            //ici insert getinsatnce ajoutactivite
+            string nom = tbx_nom.Text;
+            double coutOrganisation = Convert.ToDouble(tbx_coutOrganisation.Text);
+            double prixdeVente = Convert.ToDouble(tbx_prixDeVente.Text);
+            int idAdmin = Convert.ToInt32(cbbx_admin.SelectedItem);
+            int idCategorie = Convert.ToInt32(cbbx_categorie.SelectedIndex);
+            SingletonBD.getInstance().AjouterActivite(nom,coutOrganisation,prixdeVente,idAdmin,idCategorie);
         }
         public string Nom
         {

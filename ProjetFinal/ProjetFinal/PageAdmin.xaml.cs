@@ -48,6 +48,7 @@ namespace ProjetFinal
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Nouveau adhérent";
             dialog.PrimaryButtonText = "Ajouter";
+            dialog.DateNaissance = DateTime.Now;
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
             if (resultat == ContentDialogResult.Primary)
@@ -96,6 +97,8 @@ namespace ProjetFinal
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Nouvelle séance";
             dialog.PrimaryButtonText = "Ajouter";
+            dialog.DateOrg = DateTime.Now;
+            dialog.Heure = new TimeSpan();
             dialog.DefaultButton = ContentDialogButton.Close;
             ContentDialogResult resultat = await dialog.ShowAsync();
             Console.WriteLine(resultat);

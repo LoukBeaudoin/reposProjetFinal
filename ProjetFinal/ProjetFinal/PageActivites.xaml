@@ -8,13 +8,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <ScrollViewer>
+        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -25,7 +27,8 @@
         <TextBlock Text="Page Activité" Margin="20" FontSize="35"/>
         <TextBlock Text="Activités disponibles" FontSize="30" TextAlignment="Center" Grid.Row="1" Grid.ColumnSpan="4" TextDecorations="Underline"/>
         <Button x:Name="btn_test" Content="Connexion" Click="btn_test_Click" Grid.Row="0" Grid.Column="3"/>
-        <ListView x:Name="lv_liste" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Margin="20" ItemsSource="{x:Bind Liste}">
+            <Button x:Name="btn_session" Content=" Ouverture Session" Click="btn_session_Click" Grid.Row="0" Grid.Column="2"/>
+            <ListView x:Name="lv_liste" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Margin="20" ItemsSource="{x:Bind Liste}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Activite">
                     <StackPanel Margin="10" Orientation="Horizontal">
@@ -36,5 +39,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+            <TextBlock x:Name="sessionIdentifiant" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="20"/>
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -23,19 +23,27 @@
             <TextBlock x:Name="erreur_nbPlaceDispo" FontSize="15" Foreground="red" />
         </StackPanel>
 
-        <StackPanel Margin="5">
+        <!--<StackPanel Margin="5">
             <TimePicker x:Name="tp_heureSeance" Time="{x:Bind Heure, Mode=TwoWay}" Header="Choisir l'heure" />
             <TextBlock x:Name="erreur_HeureSeance" FontSize="15" Foreground="red" />
-        </StackPanel>
+        </StackPanel>-->
         <StackPanel Margin="5">
-            <ComboBox Header="Choisir l'activité de la séance" x:Name="idActivite">
-                
-                 <!--verifier pour le nom-->
+            <ComboBox Header="idActivite" x:Name="cbbox_idActivite">
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+                <x:String>3</x:String>
+                <x:String>4</x:String>
+                <x:String>5</x:String>
+                <x:String>6</x:String>
+                <x:String>7</x:String>
+                <x:String>8</x:String>
+                <x:String>9</x:String>
+                <x:String>10</x:String>
             </ComboBox>
             <TextBlock x:Name="erreur_ChoixActivite" FontSize="15" Foreground="red" />
         </StackPanel>
 
-        <StackPanel Margin="5">
+        <!--<StackPanel Margin="5">
             <ComboBox Header="Note (/5)" 
           SelectedItem="{x:Bind SelectedComboBoxItem, Mode=TwoWay}">
                 <ComboBoxItem Content="1" />
@@ -45,7 +53,7 @@
                 <ComboBoxItem Content="5" />
             </ComboBox>
             <TextBlock x:Name="erreur_NoteApp" FontSize="15" Foreground="red" />
-        </StackPanel>
+        </StackPanel>-->
 
     </StackPanel>
 </ContentDialog>

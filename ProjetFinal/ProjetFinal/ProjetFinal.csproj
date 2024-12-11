@@ -26,6 +26,7 @@
     <None Remove="PageActivites.xaml" />
     <None Remove="PageAdmin.xaml" />
     <None Remove="PageStats.xaml" />
+    <None Remove="SessionAdherent.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="App.xaml" />
@@ -62,6 +63,9 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Update="SessionAdherent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="DialogSupprimerSeance.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,6 +18,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -76,7 +77,7 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <Button x:Name="sauvgarderActivite" Click="sauvgarderActivite_Click" Content="Sauvegarder Activité" Grid.Row="4" Grid.Column="0"/>
-        <Button x:Name="sauvgarderAdherent" Click="sauvgarderAdherent_Click"  Content="Sauvegarder Adhérent" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="sauvgarderActivite" Click="sauvgarderActivite_Click" Content="Sauvegarder Activité" Grid.Row="7" Grid.Column="0"/>
+        <Button x:Name="sauvgarderAdherent" Click="sauvgarderAdherent_Click"  Content="Sauvegarder Adhérent" Grid.Row="7" Grid.Column="1"/>
     </Grid>
 </Page>

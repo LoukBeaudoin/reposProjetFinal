@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace ProjetFinal
         }
 
         public bool _connecter;
+        public bool _session;
         public bool Connecter 
         {
             get { return _connecter; } 
@@ -40,6 +42,21 @@ namespace ProjetFinal
         private Authentification()
         {
             Connecter = false;
+        }
+
+        public bool Session
+        {
+            get { return _session; }
+            set
+            {
+                if (_session != value)
+                {
+                    _session = value;
+                    OnPropertyChanged(nameof(Session));
+                }
+            }
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

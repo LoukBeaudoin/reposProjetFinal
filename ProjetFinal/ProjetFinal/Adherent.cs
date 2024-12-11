@@ -9,10 +9,10 @@ namespace ProjetFinal
 {
     public class Adherent : INotifyPropertyChanged
     {
-        string noIdentification="";
-        string nom="";
-        string prenom="";
-        string adresse="";
+        string noIdentification = "";
+        string nom = "";
+        string prenom = "";
+        string adresse = "";
         DateTimeOffset dateNaissance;
         DateTime date = DateTime.Now;
         int age = 0;
@@ -29,20 +29,24 @@ namespace ProjetFinal
 
 
 
-           
+
             /*noIdentification = initiales + année naissance + randomint 3 chiffres 
         (AT-2003-152)*/
             //Min 18 ans
             //Pour chaque : enregistrer la liste des séances d’activité qu’il participe
         }
 
+        public Adherent(string noIdentification)
+        {
+            this.noIdentification = noIdentification;
+        }
         public Adherent(string nom, string prenom)
         {
             this.nom = nom;
             this.prenom = prenom;
         }
 
-        public Adherent(string nom, string prenom,string noIdentification, string adresse, DateTimeOffset dateNaissance,int age)
+        public Adherent(string nom, string prenom, string noIdentification, string adresse, DateTimeOffset dateNaissance, int age)
         {
             this.nom = nom;
             this.prenom = prenom;
@@ -53,7 +57,7 @@ namespace ProjetFinal
         }
         public string noIdString(string nom, string prenom, DateTimeOffset dateNaissance)
         {
-            string initiales = prenom.Substring(0,1) + nom.Substring(0,1);
+            string initiales = prenom.Substring(0, 1) + nom.Substring(0, 1);
             int annéeNaissance = dateNaissance.Year;
             Random random = new Random();
             int randomDigits = random.Next(1, 1000);
@@ -62,11 +66,11 @@ namespace ProjetFinal
             return $"{initiales}-{annéeNaissance}-{formattedRandom}";
         }
 
-        public double calculAge() 
+        public double calculAge()
         {
             TimeSpan nbJours = date - dateNaissance;
             double age = (nbJours.Days) / 365.25;
-            return age; 
+            return age;
         }
 
 
@@ -85,7 +89,7 @@ namespace ProjetFinal
         public string Nom
         {
             get { return nom; }
-            set 
+            set
             {
                 if (nom != value)
                 {
@@ -97,13 +101,13 @@ namespace ProjetFinal
         public string Prenom
         {
             get { return prenom; }
-            set 
+            set
             {
                 if (prenom != value)
                 {
                     prenom = value;
                     OnPropertyChanged(nameof(Prenom));
-                    
+
                 }
             }
         }
@@ -141,5 +145,7 @@ namespace ProjetFinal
         {
             return $"Num. d'identification : {noIdentification}, Nom : {nom}, Prénom : {prenom}, Adresse : {adresse}, Date de naissance : {dateNaissance}";
         }
+
+        public static Adherent CurrentAdherent { get; set; }
     }
 }

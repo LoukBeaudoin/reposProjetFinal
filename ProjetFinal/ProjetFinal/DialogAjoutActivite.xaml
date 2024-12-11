@@ -29,7 +29,7 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Id Admin">
+            <ComboBox Header="Id Admin" x:Name="cbbx_admin">
                 <x:String>1</x:String>
                 <x:String>2</x:String>
                 <x:String>3</x:String>
@@ -46,7 +46,7 @@
 
         <StackPanel Margin="5">
             <ComboBox Header="Catégorie" Text="{x:Bind Type, Mode=TwoWay}" x:Name="cbbx_categorie">
-                <x:String>Escalade</x:String>
+                <x:String>Escalade 1</x:String>
                 <x:String>Raquette</x:String>
                 <x:String>Cirque</x:String>
                 <x:String>Tricot</x:String>
