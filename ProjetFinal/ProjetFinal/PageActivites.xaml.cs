@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +27,33 @@ namespace ProjetFinal
         public PageActivites()
         {
             this.InitializeComponent();
+            //this.DataContext = SingletonBD.getInstance();
+            SingletonBD.getInstance().getActiviteAccueil();
+            SingletonBD.getInstance().getAdherentAccueil();
         }
+
+        public ObservableCollection<Activite> Liste
+        {
+            get { return SingletonBD.getInstance().Liste; }
+        }
+
+        private async void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+            MonDialogue dialog = new MonDialogue();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Authentification";
+            dialog.PrimaryButtonText = "Se Connecter";
+            dialog.SecondaryButtonText = "Déconnexion";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        //public ObservableCollection<Adherent> ListeAdherent
+        //{
+        //    get { return SingletonBD.getInstance().ListeAdherent; }
+        //}
+
+
     }
 }

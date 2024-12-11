@@ -1,10 +1,12 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Core;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
@@ -227,15 +229,56 @@ namespace ProjetFinal
             Gv_Affichage_Adherent.Visibility = Visibility.Collapsed;
             Gv_Affichage_Activite.Visibility = Visibility.Collapsed;
         }
-        private async void btn_test_Click(object sender, RoutedEventArgs e)
+
+        private async void sauvgarderActivite_Click(object sender, RoutedEventArgs e)
         {
-            MonDialogue dialog = new MonDialogue();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = "Authentification";
-            dialog.PrimaryButtonText = "Annuler";
-            dialog.CloseButtonText = "Se connecter";
-            dialog.DefaultButton = ContentDialogButton.Close;
-            ContentDialogResult resultat = await dialog.ShowAsync();
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var window = (Application.Current as App)?.MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "activite";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+            List<Activite> liste = new List<Activite>();
+            if (monFichier != null) 
+            {
+                liste = SingletonBD.getInstance().Liste.ToList();
+            }
+            else
+            {
+                return;
+            }
+
+            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.StringCSV), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+
+        }
+
+        private async void sauvgarderAdherent_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var window = (Application.Current as App)?.MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "adherent";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+            List<Adherent> liste = new List<Adherent>();
+            if (monFichier != null)
+            {
+                liste = SingletonBD.getInstance().ListeAdherent.ToList();
+            }
+            else
+            {
+                return;
+            }
+
+            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.StringCSV), Windows.Storage.Streams.UnicodeEncoding.Utf8);
         }
     }
 }

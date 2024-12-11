@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,11 +24,14 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private XamlRoot XamlRoot;
+
         public MainWindow()
         {
             this.InitializeComponent();
-            //Singleton.GetInstance.SetMainWindow(this);
             mainWindow.Navigate(typeof(PageActivites));
+            //Authentification.getInstance().PropertyChanged += Authentification_PropertyChanged;
+            //ModifierVisibilite();
         }
 
         private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -49,5 +53,28 @@ namespace ProjetFinal
                     break;
             }
         }
+
+
+        //private void Authentification_PropertyChanged(object sender, PropertyChangedEventArgs e) 
+        //{
+        //    if (e.PropertyName == nameof(Authentification.Connecter))
+        //    {
+        //        ModifierVisibilite();
+        //    }
+        //}
+
+        //private void ModifierVisibilite()
+        //{
+        //    bool estConnecter = Authentification.getInstance().Connecter;
+        //    if (estConnecter)
+        //    {
+        //        pageAdmin.Visibility = Visibility.Visible;
+        //    }
+        //    else
+        //    {
+        //        pageAdmin.Visibility = Visibility.Collapsed;
+        //    }
+        //}
+
     }
 }

@@ -27,7 +27,6 @@
 
 
         <TextBlock Text="Page Admin" Margin="20" FontSize="25" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_test" Content="Test" Click="btn_test_Click" Grid.Row="3" Grid.Column="3"/>
 
         <Button x:Name="btnAdherent" Content="Voir les Adhérents" Click="btnAdherent_Click" Grid.Row="2" Grid.Column="0" Margin="0,0,0,20" Background="LightGreen"/>
         <Button x:Name="btnActivite" Content="Voir les Activités" Click="btnActivite_Click" Grid.Row="2" Grid.Column="1" Margin="0,0,0,20" Background="LightGreen"/>
@@ -71,5 +70,8 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+
+        <Button x:Name="sauvgarderActivite" Click="sauvgarderActivite_Click" Content="Sauvegarder Activité" Grid.Row="4" Grid.Column="0"/>
+        <Button x:Name="sauvgarderAdherent" Click="sauvgarderAdherent_Click"  Content="Sauvegarder Adhérent" Grid.Row="4" Grid.Column="1"/>
     </Grid>
 </Page>

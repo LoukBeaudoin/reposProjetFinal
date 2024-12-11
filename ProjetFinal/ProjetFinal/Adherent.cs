@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Adherent : INotifyPropertyChanged
+    public class Adherent : INotifyPropertyChanged
     {
         string noIdentification="";
         string nom="";
@@ -15,6 +15,7 @@ namespace ProjetFinal
         string adresse="";
         DateTimeOffset dateNaissance;
         DateTime date = DateTime.Now;
+        int age = 0;
 
         public Adherent() { }
 
@@ -35,6 +36,21 @@ namespace ProjetFinal
             //Pour chaque : enregistrer la liste des séances d’activité qu’il participe
         }
 
+        public Adherent(string nom, string prenom)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+        }
+
+        public Adherent(string nom, string prenom,string noIdentification, string adresse, DateTimeOffset dateNaissance,int age)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.noIdentification = noIdentification;
+            this.adresse = adresse;
+            this.dateNaissance = dateNaissance;
+            this.age = age;
+        }
         public string noIdString(string nom, string prenom, DateTimeOffset dateNaissance)
         {
             string initiales = prenom.Substring(0,1) + nom.Substring(0,1);
@@ -62,12 +78,27 @@ namespace ProjetFinal
         public string Nom
         {
             get { return nom; }
-            set { nom = value; }
+            set 
+            {
+                if (nom != value)
+                {
+                    nom = value;
+                    OnPropertyChanged(nameof(Nom));
+                }
+            }
         }
         public string Prenom
         {
             get { return prenom; }
-            set { prenom = value; }
+            set 
+            {
+                if (prenom != value)
+                {
+                    prenom = value;
+                    OnPropertyChanged(nameof(Prenom));
+                    
+                }
+            }
         }
         public string Adresse
         {
@@ -89,6 +120,14 @@ namespace ProjetFinal
         public string WriteCsv()
         {
             return $"{noIdentification};{nom};{prenom};{adresse};{dateNaissance}";
+        }
+
+        public string StringCSV
+        {
+            get
+            {
+                return $"{noIdentification};{nom};{prenom};{adresse};{dateNaissance};{age}";
+            }
         }
 
         public override string ToString()

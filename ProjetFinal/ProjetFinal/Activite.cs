@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Activite : INotifyPropertyChanged
+    public class Activite : INotifyPropertyChanged
     {
         string nom ="";
         string type ="";
         double prixOrganisation = 0;
         double prixVente = 0;
+        int noteEvaluation = 0;
 
 
-        public Activite() { }
+        
         public Activite(string nom, string type, double coutOrganisation, double prixVente)
         {
             this.nom = nom;
@@ -24,10 +25,32 @@ namespace ProjetFinal
             this.prixVente = prixVente;
         }
 
+        public Activite(string nom, int noteEvaluation)
+        {
+            this.nom = nom;
+            this.noteEvaluation = noteEvaluation;
+        }
+
+        public Activite(string nom, double coutOrganisation, double prixVente, int noteEvaluation)
+        {
+            this.nom = nom;
+            this.prixOrganisation = coutOrganisation;
+            this.prixVente = prixVente;
+            this.noteEvaluation = noteEvaluation;
+        }
+
         public string Nom
         {
             get { return nom; }
-            set { nom = value; }
+            set 
+            {
+                if (nom != value)
+                {
+                    nom = value;
+                    OnPropertyChanged(nameof(Nom));
+                }
+                
+            }
         }
 
         public string Type
@@ -47,10 +70,32 @@ namespace ProjetFinal
             get { return prixVente; }
             set { prixVente = value; }
         }
+
+        public int NoteEvaluation
+        {
+            get { return noteEvaluation; }
+            set 
+            {
+                if (noteEvaluation != value)
+                {
+                    noteEvaluation = value;
+                    OnPropertyChanged(nameof(NoteEvaluation));
+                }
+                
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public string StringCSV
+        {
+            get
+            {
+                return $"{nom};{prixOrganisation};{prixVente}";
+            }
         }
 
 

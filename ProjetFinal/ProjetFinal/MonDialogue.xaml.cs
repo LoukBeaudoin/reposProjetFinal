@@ -25,6 +25,8 @@ namespace ProjetFinal
 
         bool fermer = false;
 
+        //public bool connecter = false;
+
         public MonDialogue()
         {
             this.InitializeComponent();
@@ -32,9 +34,63 @@ namespace ProjetFinal
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Nom = tbx_user.Text;
-            Mdp = pwd_user.Password;
+            
 
+        }
+
+        private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+                string Nom = tbx_user.Text;
+                string Mdp = pwd_user.Password;
+            if (args.Result == ContentDialogResult.Primary)
+            {
+                args.Cancel = true;
+                if (string.IsNullOrWhiteSpace(Nom))
+                {
+                    erreurnom.Text = "Le champs Identifiant ne peut pas être vide!";
+                }
+                if (string.IsNullOrWhiteSpace(Mdp))
+                {
+                    erreurmdp.Text = "Le champs Mot de passe ne peut pas être vide!";
+                }
+                else
+                {
+                    bool authentification = SingletonBD.getInstance().Connexion(Nom, Mdp);
+
+                    if (authentification)
+                    {
+                        args.Cancel = false;
+                        Authentification.getInstance().Connecter = true;
+                    }
+                    else
+                    {
+                        erreurmdp.Text = "L'identifiant ou le mot de passe est incorrect";
+                    }      
+                }
+
+
+            }
+            if (args.Result == ContentDialogResult.Secondary)
+            {
+                Authentification.getInstance().Connecter = false;
+            }
+
+        }
+
+        private void pwd_user_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(pwd_user.Password))
+            {
+                erreurmdp.Text = "";
+            }
+        }
+
+        private void tbx_user_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(tbx_user.Text))
+            {
+                erreurnom.Text = "";
+            }
         }
     }
 }

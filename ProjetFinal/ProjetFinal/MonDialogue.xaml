@@ -7,13 +7,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Closing="ContentDialog_Closing">
 
     <StackPanel>
-        <TextBlock Text="Identifiant :" FontSize="18"/>
-        <TextBox x:Name="tbx_user" Margin="5"/>
-        <TextBlock Text="Mot de passe :" FontSize="18"/>
-        <PasswordBox x:Name="pwd_user" Margin="5" />
+        <StackPanel x:Name="stkerruerNom">
+            <TextBlock Text="Identifiant :" FontSize="18"/>
+            <TextBox x:Name="tbx_user" TextChanged="tbx_user_TextChanged" Margin="5"/>
+            <TextBlock x:Name="erreurnom" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel x:Name="stk_erreurMdp">
+            <TextBlock Text="Mot de passe :" FontSize="18"/>
+            <PasswordBox x:Name="pwd_user" PasswordChanged="pwd_user_PasswordChanged" Margin="5" />
+            <TextBlock x:Name="erreurmdp" Foreground="Red"/>
+        </StackPanel>
     </StackPanel>
 
 </ContentDialog>

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Expr;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,12 +12,18 @@ namespace ProjetFinal
 {
     class SingletonBD
     {
+        ObservableCollection<Activite> liste;
+        ObservableCollection<Adherent> listeAdherent;
         MySqlConnection con;
         static SingletonBD instance = null;
+
+        public ObservableCollection<Activite> Liste { get => liste; }
+        public ObservableCollection<Adherent> ListeAdherent { get => listeAdherent; }
         public SingletonBD()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=2387284;Pwd=2387284;");
-            //liste = new ObservableCollection<ObjetProduit>();
+            liste = new ObservableCollection<Activite>();
+            listeAdherent = new ObservableCollection<Adherent>();
         }
 
         public static SingletonBD getInstance()
@@ -26,31 +33,67 @@ namespace ProjetFinal
 
             return instance;
         }
-        public void getSeances()
+
+        public void getActiviteAccueil()
         {
             //liste.Clear();
 
 
-            //MySqlCommand commande = new MySqlCommand();
-            //commande.Connection = con;
-            //commande.CommandText = "Select * from produits";
-            //con.Open();
-            //MySqlDataReader r = commande.ExecuteReader();
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT nom,coutOrganisation,prixDeVente, ROUND(AVG(noteAppreciation)) as moyenne FROM inscription\r\nINNER JOIN a2024_420335ri_eq3.seances s on inscription.idSeance = s.idSeances\r\nINNER JOIN a2024_420335ri_eq3.activites a on s.idActivite = a.idActivite\r\nGROUP BY nom;";
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
 
-            //while (r.Read())
-            //{
-            //    string nom = r["nom"].ToString();
-            //    double prix = Convert.ToDouble(r["prix"]);
-            //    string categorie = r["categorie"].ToString();
+            while (r.Read())
+            {
+                string nom = r["nom"].ToString();
+                double coutOrganisation = Convert.ToDouble(r["coutOrganisation"]);
+                double prixDeVente = Convert.ToDouble(r["prixDeVente"]);
+                int noteEvaluation = Convert.ToInt32(r["moyenne"]);
 
-            //    ObjetProduit texte = new ObjetProduit(nom, prix, categorie);
+                Activite texte = new Activite(nom,coutOrganisation,prixDeVente, noteEvaluation);
 
-            //    liste.Add(texte);
-            //}
+                liste.Add(texte);
+            }
 
 
-            //r.Close();
-            //con.Close();
+            r.Close();
+            con.Close();
+
+
+        }
+
+        //Liste adherent Page accueil
+        public void getAdherentAccueil()
+        {
+            //liste.Clear();
+
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT nom, prenom,noIdentification,adresse,dateNaissance,age FROM adherents";
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                string nom = r["nom"].ToString();
+                string prenom = r["prenom"].ToString();
+                string noIdentification = r["noIdentification"].ToString();
+                string adresse = r["adresse"].ToString();
+                string dateNaissance = r["dateNaissance"].ToString();
+                DateTimeOffset dateNaissanceFinal = Convert.ToDateTime(dateNaissance);
+                int age = Convert.ToInt32(r["age"]);
+
+                Adherent texte = new Adherent(nom, prenom, noIdentification, adresse, dateNaissanceFinal, age);
+
+                listeAdherent.Add(texte);
+            }
+
+
+            r.Close();
+            con.Close();
 
 
         }
@@ -103,7 +146,6 @@ namespace ProjetFinal
         {
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            //commande.CommandText = "SELECT nom, COUNT(*) as total FROM adherent GROUP BY activite";
             commande.CommandText = "select a.nom,count(*) as total from seances\r\nINNER JOIN a2024_420335ri_eq3.activites a on seances.idActivite = a.idActivite\r\ngroup by seances.idActivite";
             Dictionary<string, int> adherentActivite = new Dictionary<string, int>();
             con.Open();
@@ -205,6 +247,30 @@ namespace ProjetFinal
             con.Close();
             return totalInscription;
 
+        }
+
+        public bool Connexion(string Nom, string Mdp) 
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            con.Open();
+            commande.CommandText = "SELECT * FROM administrateurs where nomUtilisateur = @Nom AND motDePasse = @Mdp";
+            commande.Parameters.AddWithValue("@Nom",Nom);
+            commande.Parameters.AddWithValue("@Mdp", Mdp);
+            MySqlDataReader r = commande.ExecuteReader();
+            Boolean authentification = false;
+            if (r.Read() == true)
+            {
+                authentification = true;
+            }
+            else
+            {
+                authentification = false;
+            }
+
+            r.Close();
+            con.Close();
+            return authentification;
         }
 
 
