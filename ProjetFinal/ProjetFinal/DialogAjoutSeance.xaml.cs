@@ -14,29 +14,47 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Org.BouncyCastle.Utilities;
 using System.Diagnostics;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace ProjetFinal
 {
-    public sealed partial class DialogAjoutSeance : ContentDialog
+    public sealed partial class DialogAjoutSeance : ContentDialog, INotifyPropertyChanged
     {
-        DateTime parsedDateOrg;
-        int parsedNbPlaces;
-        int selectedHour;
-        int selectedMinutes;
+        public DateTimeOffset inputDateOrg;
+        public int inputNbPlaces;
+        public TimeSpan inputHeure;
+        public string inputNoteAppreciation;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        ObservableCollection<Activite> activites;
+        public int parsedNbPlaces;
+        public int parsedNoteApp;
         public DialogAjoutSeance()
         {
             this.InitializeComponent();
+            this.DataContext = this;
+            activites = SingletonListeActivites.GetInstance().Liste;
+            foreach (var item in activites)
+            {
+                ComboBoxItem comboBoxItem = new ComboBoxItem();
+                comboBoxItem.Content = item.Nom;
+                idActivite.Items.Add(comboBoxItem);
+            }
         }
 
+
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private void OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            string inputDate = tbx_dateOrganisation.Text;
-            string inputNbPlaces = tbx_nbPlaceDispo.Text;
-
-            if (!DateTime.TryParse(inputDate, out parsedDateOrg))
+            if (DateOrg == default)
             {
                 erreur_dateOrganisation.Visibility = Visibility.Visible;
                 erreur_dateOrganisation.Text = "Veuillez entrer une date valide (YYYY/MM/DD).";
@@ -46,7 +64,8 @@ namespace ProjetFinal
             {
                 erreur_dateOrganisation.Visibility = Visibility.Collapsed;
             }
-            if (inputNbPlaces.Trim() == string.Empty || !Int32.TryParse(inputNbPlaces, out parsedNbPlaces))
+
+            if (!Int32.TryParse(NbPlaces.Trim(), out parsedNbPlaces))
             { 
                 erreur_nbPlaceDispo.Visibility = Visibility.Visible;
                 erreur_nbPlaceDispo.Text = "Veuillez entrer un nombre de places valide (nombre)";
@@ -56,32 +75,57 @@ namespace ProjetFinal
             {
                 erreur_nbPlaceDispo.Visibility = Visibility.Collapsed;
             }
-            if (tp_heureSeance.SelectedTime is TimeSpan selectedTime)
-            {
-                selectedHour = selectedTime.Hours;
-                selectedMinutes = selectedTime.Minutes;
-                erreur_HeureSeance.Visibility = Visibility.Collapsed;
-            }
-            else
+
+            if (Heure == default)
             {
                 erreur_HeureSeance.Visibility = Visibility.Visible;
-                erreur_HeureSeance.Text = "Veuillez sélectionner une heure valide";
-                args.Cancel = true;
-            }
-            if (noteApp.SelectedIndex == -1) 
-            { 
-                erreur_NoteApp.Visibility = Visibility.Visible;
-                erreur_NoteApp.Text = "Veuillez choisir une note (/5)";
+                erreur_HeureSeance.Text = "Veuillez choisir une heure valide.";
                 args.Cancel = true;
             }
             else
             {
-                erreur_NoteApp.Visibility = Visibility.Collapsed;
+                erreur_HeureSeance.Visibility = Visibility.Collapsed;
             }
+
+            //if (string.IsNullOrEmpty(inputNoteAppreciation) || cbbx_Note_App.SelectedIndex == -1 || !Int32.TryParse(inputNoteAppreciation, out parsedNoteApp))
+            //{
+            //    erreur_NoteApp.Visibility = Visibility.Visible;
+            //    erreur_NoteApp.Text = "Veuillez noter.";
+            //    args.Cancel = true;
+            //}
+            //else
+            //{
+            //    erreur_NoteApp.Visibility = Visibility.Collapsed;
+            //}
+
+            if (!args.Cancel)
+            {
+                
+                inputHeure = Heure;
+            }
+
+
         }
-        public DateTime DateOrg => parsedDateOrg;
-        public string HeureSeance => $"{selectedHour}:{selectedMinutes}";
-        public int NbPlaces => parsedNbPlaces;
-        public string NoteAppr => noteApp.SelectedItem.ToString();
+        
+        public DateTimeOffset DateOrg
+        {
+            get => inputDateOrg;
+            set => inputDateOrg = value;
+        }
+        public string NbPlaces
+        {
+            get => parsedNbPlaces.ToString();
+            set => parsedNbPlaces = Int32.Parse(value);
+        }
+        public TimeSpan Heure
+        {
+            get => inputHeure;
+            set => inputHeure = value;
+        }
+        public int NoteAppreciation
+        {
+            get => parsedNoteApp;
+            set => parsedNoteApp = value;
+        }
     }
 }

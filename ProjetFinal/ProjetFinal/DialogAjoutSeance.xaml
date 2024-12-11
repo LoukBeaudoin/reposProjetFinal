@@ -7,25 +7,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    PrimaryButtonText="Ajouter"
-    SecondaryButtonText="Annuler"
     PrimaryButtonClick="OnPrimaryButtonClick"
+    CloseButtonText="Annuler"
     >
 
     <StackPanel>
         
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_dateOrganisation" Header="Entrez la date de la séance (YYYY/MM/DD)" />
+            <DatePicker x:Name="tbx_dateOrganisation" Date="{x:Bind DateOrg, Mode=TwoWay}" Header="Entrez la date de la séance (YYYY/MM/DD)" />
             <TextBlock x:Name="erreur_dateOrganisation" FontSize="15" Foreground="red" />
         </StackPanel>
             
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_nbPlaceDispo" Header="Entrez le nombre de place disponible"  />
+            <TextBox x:Name="tbx_nbPlaceDispo" Text="{x:Bind NbPlaces, Mode=TwoWay}" Header="Entrez le nombre de place disponible"  />
             <TextBlock x:Name="erreur_nbPlaceDispo" FontSize="15" Foreground="red" />
         </StackPanel>
 
         <StackPanel Margin="5">
-            <TimePicker x:Name="tp_heureSeance" Header="Choisir l'heure" />
+            <TimePicker x:Name="tp_heureSeance" Time="{x:Bind Heure, Mode=TwoWay}" Header="Choisir l'heure" />
             <TextBlock x:Name="erreur_HeureSeance" FontSize="15" Foreground="red" />
         </StackPanel>
         <StackPanel Margin="5">
@@ -37,7 +36,7 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <ComboBox Header="Note (/5)" x:Name="noteApp">
+            <ComboBox Header="Note (/5)" SelectedValue="{x:Bind NoteAppreciation, Mode=TwoWay}" x:Name="cbbx_Note_App">
                 <x:String>1</x:String>
                 <x:String>2</x:String>
                 <x:String>3</x:String>

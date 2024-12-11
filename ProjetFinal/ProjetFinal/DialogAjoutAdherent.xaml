@@ -28,7 +28,7 @@
         </StackPanel>
 
         <StackPanel Margin="5">
-            <TextBox x:Name="tbx_dateNaissance" Text="{x:Bind DateNaissance, Mode=TwoWay}" Header="Entrez la date de naissance" />
+            <DatePicker x:Name="tbx_dateNaissance" Date="{x:Bind DateNaissance, Mode=TwoWay}" Header="Entrez la date de naissance" />
             <!--attention-->
             <TextBlock x:Name="erreur_dateNaissance" FontSize="15" Foreground="red" />
         </StackPanel>

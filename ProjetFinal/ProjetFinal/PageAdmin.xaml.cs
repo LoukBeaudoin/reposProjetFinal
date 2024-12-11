@@ -33,10 +33,12 @@ namespace ProjetFinal
         public PageAdmin()
         {
             this.InitializeComponent();
-            Adherent adherentTest = new Adherent("mil", "mea", "assds", new DateTime(2006 / 07 / 19));
+            Adherent adherentTest = new Adherent("mil", "mea", "assds", new DateTimeOffset(new DateTime(2006,07,19)));
             listeAdherent.Add(adherentTest);
             Activite activiteTest = new Activite("as", "ass", 12, 13);
             listeActivite.Add(activiteTest);
+            Seance seanceTest = new Seance(DateTime.Now, new TimeSpan(14, 30, 0), 15, 3);
+            listeSeance.Add(seanceTest);
         }
         private async void btn_ajout_adherent_Click(object sender, RoutedEventArgs e)
         {
@@ -97,7 +99,7 @@ namespace ProjetFinal
             {
                 try
                 {
-                    new Seance(dialog.DateOrg, dialog.HeureSeance, dialog.NbPlaces, int.Parse( dialog.NoteAppr));
+                    new Seance(dialog.DateOrg, dialog.Heure, Int32.Parse(dialog.NbPlaces), dialog.NoteAppreciation);
                 }
                 catch(Exception ex)
                 {
@@ -173,14 +175,14 @@ namespace ProjetFinal
         }
         private async void Gv_Affichage_Seance_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (e.ClickedItem is Adherent clickedAdherent)
+            if (e.ClickedItem is Seance clickedSeance)
             {
-                var dialog = new DialogAjoutAdherent
+                var dialog = new DialogAjoutSeance
                 {
-                    Nom = clickedAdherent.Nom,
-                    Prenom = clickedAdherent.Prenom,
-                    Adresse = clickedAdherent.Adresse,
-                    DateNaissance = clickedAdherent.DateNaissance,
+                    DateOrg = clickedSeance.Date,
+                    NbPlaces = clickedSeance.NbPlaces.ToString(),
+                    Heure = clickedSeance.Heure,
+                    NoteAppreciation = clickedSeance.Note,
                     XamlRoot = this.XamlRoot,
                     PrimaryButtonText = "Modifier",
                     SecondaryButtonText = "Supprimer"
@@ -188,14 +190,14 @@ namespace ProjetFinal
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
                 {
-                    clickedAdherent.Nom = dialog.Nom;
-                    clickedAdherent.Prenom = dialog.Prenom;
-                    clickedAdherent.Adresse = dialog.Adresse;
-                    clickedAdherent.DateNaissance = dialog.DateNaissance;
+                    clickedSeance.Date = dialog.DateOrg;
+                    clickedSeance.NbPlaces = Int32.Parse(dialog.NbPlaces);
+                    clickedSeance.Heure = dialog.Heure;
+                    clickedSeance.Note = dialog.NoteAppreciation;
                 }
                 else if (result == ContentDialogResult.Secondary)
                 {
-                    listeAdherent.Remove(clickedAdherent);
+                    listeSeance.Remove(clickedSeance);
                 }
                 else
                 {

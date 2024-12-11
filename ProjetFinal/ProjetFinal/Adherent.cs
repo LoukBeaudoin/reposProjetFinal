@@ -13,12 +13,12 @@ namespace ProjetFinal
         string nom="";
         string prenom="";
         string adresse="";
-        DateTime dateNaissance = DateTime.Now;
+        DateTimeOffset dateNaissance;
         DateTime date = DateTime.Now;
 
         public Adherent() { }
 
-        public Adherent(string nom, string prenom, string adresse, DateTime dateNaissance)
+        public Adherent(string nom, string prenom, string adresse, DateTimeOffset dateNaissance)
         {
             this.noIdentification = noIdString(nom, prenom, dateNaissance);
             this.nom = nom;
@@ -35,7 +35,7 @@ namespace ProjetFinal
             //Pour chaque : enregistrer la liste des séances d’activité qu’il participe
         }
 
-        public string noIdString(string nom, string prenom, DateTime dateNaissance)
+        public string noIdString(string nom, string prenom, DateTimeOffset dateNaissance)
         {
             string initiales = prenom.Substring(0,1) + nom.Substring(0,1);
             int annéeNaissance = dateNaissance.Year;
@@ -75,7 +75,7 @@ namespace ProjetFinal
             set { adresse = value; }
         }
 
-        public DateTime DateNaissance
+        public DateTimeOffset DateNaissance
         {
             get { return dateNaissance; }
             set { dateNaissance = value; }
